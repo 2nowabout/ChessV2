@@ -1,15 +1,13 @@
 package function;
 
 import objects.Tile;
-import objects.chessPieces.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class generateBord {
+public class GenerateBord {
     private ArrayList<Tile> bord;
 
-    public generateBord() {
+    public GenerateBord() {
         bord = new ArrayList<>();
     }
 

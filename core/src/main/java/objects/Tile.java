@@ -51,14 +51,11 @@ public class Tile {
 
     public boolean isThisCorrectTile(int x, int y)
     {
-        if(this.x == x && this.y == y)
-        {
-            return true;
-        }
-        return false;
+        return this.x == x && this.y == y;
     }
 
     public void update(float dt) {
+        throw new UnsupportedOperationException();
     }
 
     public void dispose()

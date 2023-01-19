@@ -3,14 +3,14 @@ package objects;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import interfaces.iButtons;
+import interfaces.IButtons;
 
 import java.awt.*;
 
-public class Buttons implements iButtons {
+public class Buttons implements IButtons {
 
-    private static final int HEIGHT = 120;
-    private static final int WIDTH = 400;
+    private static final int TEXTURE_HEIGHT = 120;
+    private static final int TEXTURE_WIDTH = 400;
 
     private int height;
     private int width;
@@ -31,7 +31,7 @@ public class Buttons implements iButtons {
         font = new BitmapFont();
         this.renderX = renderX;
         this.renderY = renderY;
-        if (texture == "") {
+        if (texture.equals("")) {
             this.texture = new Texture("Button.png");
         } else {
             this.texture = new Texture(texture);
@@ -40,7 +40,7 @@ public class Buttons implements iButtons {
 
     public void update(float dt) {
         if (width == 0 || height == 0) {
-            rectangle = new Rectangle(renderX, renderY, WIDTH, HEIGHT);
+            rectangle = new Rectangle(renderX, renderY, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         } else {
             rectangle = new Rectangle(renderX, renderY, width, height);
         }
@@ -48,7 +48,7 @@ public class Buttons implements iButtons {
 
     public void render(SpriteBatch sb) {
         if (width == 0 || height == 0) {
-            sb.draw(texture, renderX, renderY, WIDTH, HEIGHT);
+            sb.draw(texture, renderX, renderY, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         } else {
             sb.draw(texture, renderX, renderY, width, height);
         }

@@ -1,6 +1,9 @@
 package function;
 
 public class TilePositionGenerator {
+    private TilePositionGenerator() {
+    }
+
     private static Character[] vertical = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 
     public static String getPositionString(int x, int y)

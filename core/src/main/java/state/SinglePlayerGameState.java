@@ -6,13 +6,11 @@ import managers.MainBordManager;
 
 public class SinglePlayerGameState extends State {
 
-    private GameStateManager gsm;
     private MainBordManager bordManager;
 
 
-    protected SinglePlayerGameState(GameStateManager gsm) {
-        super(gsm);
-        this.gsm = gsm;
+    protected SinglePlayerGameState() {
+        super();
         bordManager = new MainBordManager();
     }
 

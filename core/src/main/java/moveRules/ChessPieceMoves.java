@@ -9,6 +9,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.ArrayList;
 
 public class ChessPieceMoves {
+    private ChessPieceMoves() {}
 
     public static ArrayList<Move> calcPawnMoves(int x, int y, boolean white, ArrayList<ChessPieces> allPieces, boolean firstmove) {
         ArrayList<Move> possibleMoves = new ArrayList<>();

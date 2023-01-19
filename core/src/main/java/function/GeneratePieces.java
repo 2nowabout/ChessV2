@@ -32,6 +32,8 @@ public class GeneratePieces {
                         case 4:
                             chessPieces.add(new King(false, x, y));
                             break;
+                        default:
+                            throw new ArrayIndexOutOfBoundsException();
                     }
                 }
             }
@@ -65,6 +67,8 @@ public class GeneratePieces {
                         case 4:
                             chessPieces.add(new King(true, x, y));
                             break;
+                        default:
+                            throw new ArrayIndexOutOfBoundsException();
                     }
                 }
             }

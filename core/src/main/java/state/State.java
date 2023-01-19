@@ -5,8 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public abstract class State {
     protected GameStateManager gsm;
 
-    protected State(GameStateManager gsm) {
-        this.gsm = gsm;
+    protected State() {
     }
 
     protected abstract void handleInput();

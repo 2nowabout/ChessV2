@@ -23,10 +23,6 @@ public class Position {
             return false;
         }
         Position otherMember = (Position) anObject;
-        if (x == otherMember.getX() && y == otherMember.getY()) {
-            return true;
-        } else {
-            return false;
-        }
+        return x == otherMember.getX() && y == otherMember.getY();
     }
 }

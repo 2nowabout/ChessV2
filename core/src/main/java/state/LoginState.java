@@ -36,8 +36,8 @@ public class LoginState extends State {
     //private RestCommunicator restCommunicator;
     private Skin skin = new Skin(Gdx.files.internal("flat-earth-ui.json"));
 
-    public LoginState(GameStateManager gsm) {
-        super(gsm);
+    public LoginState() {
+        super();
         background = new Texture("white background.jpg");
         font = new BitmapFont();
         font.setColor(Color.BLACK);
@@ -80,7 +80,7 @@ public class LoginState extends State {
         registerStateBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                gsm.push(new RegisterState(gsm));
+                gsm.push(new RegisterState());
 
             }
         });

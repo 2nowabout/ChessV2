@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import interfaces.iButtons;
+import interfaces.IButtons;
 import objects.Buttons;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -14,12 +14,10 @@ import java.util.List;
 
 public class StartState extends State {
 
-    private GameStateManager gsm;
-    private List<iButtons> buttons;
+    private List<IButtons> buttons;
 
-    public StartState(GameStateManager gsm) {
-        super(gsm);
-        this.gsm = gsm;
+    public StartState() {
+        super();
         buttons = new ArrayList<>();
 
         Buttons localPlay = new Buttons(((Gdx.graphics.getWidth() / 5) * 2), ((Gdx.graphics.getHeight() / 5) * 4), "LocalPlay",0,0, "");
@@ -33,7 +31,7 @@ public class StartState extends State {
 
     @Override
     protected void handleInput() {
-        for (iButtons button : buttons) {
+        for (IButtons button : buttons) {
             Rectangle mouseRectangle = new Rectangle(Gdx.input.getX(), Gdx.input.getY(), 1, 1); //get mouse position
             mouseRectangle.y = Gdx.graphics.getHeight() - mouseRectangle.y; // invert y, this is already inverted in the game
             if (button.getRectangle().intersects(mouseRectangle) && Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
@@ -41,18 +39,20 @@ public class StartState extends State {
                     case "LocalPlay":
                         gsm.setLocalPlay(true);
                         gsm.setSinglePlayer(false);
-                        gsm.push(new LocalGameState(gsm));
+                        gsm.push(new LocalGameState());
                         break;
                     case "SinglePlayer":
                         gsm.setLocalPlay(false);
                         gsm.setSinglePlayer(true);
-                        gsm.push(new SinglePlayerGameState(gsm));
+                        gsm.push(new SinglePlayerGameState());
                         break;
                     case "MultiPlayer":
                         throw new NotImplementedException();
                         //gsm.setLocalPlay(false);
                         //gsm.setSinglePlayer(false);
                         //gsm.push(new LoginState(gsm));
+                    default:
+                        throw new UnsupportedOperationException();
                 }
             }
         }
@@ -60,7 +60,7 @@ public class StartState extends State {
 
     @Override
     public void update(float dt) {
-        for (iButtons button : buttons) {
+        for (IButtons button : buttons) {
             button.update(dt);
         }
         handleInput();
@@ -70,7 +70,7 @@ public class StartState extends State {
     public void render(SpriteBatch sb) {
         sb.begin();
         sb.draw(new Texture("Background.jpg"), 0 , 0 , 1920, 1080);
-        for (iButtons button : buttons) {
+        for (IButtons button : buttons) {
             button.render(sb);
         }
         sb.end();
@@ -78,7 +78,7 @@ public class StartState extends State {
 
     @Override
     public void dispose() {
-        for (iButtons button : buttons) {
+        for (IButtons button : buttons) {
             button.dispose();
         }
     }
