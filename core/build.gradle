@@ -1,0 +1,25 @@
+plugins {
+    id "jacoco"
+    id "org.sonarqube" version "2.7.1"
+
+}
+jacocoTestReport {
+    reports{
+        xml.enabled true
+    }
+}
+
+plugins.withType(JacocoPlugin)
+        {
+            tasks["test"].finalizedBy 'jacocoTestReport'
+        }
+apply plugin: "java"
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.7
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+sourceSets.main.java.srcDirs = [ "src/main/java/" ]
+sourceSets.test.java.srcDirs = [ "src/test/java/" ]
+sourceSets.test.resources.srcDirs = [ "src/test/res/" ]
