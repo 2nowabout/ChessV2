@@ -3,6 +3,7 @@ package objects;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import function.TilePositionGenerator;
+import saveLibraries.Position;
 
 import java.awt.*;
 
@@ -15,16 +16,14 @@ public class Tile {
     private boolean white;
     private int renderX;
     private int renderY;
-    private int x;
-    private int y;
+    private Position position;
     private Rectangle rectangle;
     private static BitmapFont font = new BitmapFont();
 
     public Tile(boolean white, int renderX, int renderY, int x, int y) {
         this.renderX = renderX;
         this.renderY = renderY;
-        this.x = x;
-        this.y = y;
+        this.position = new Position(x,y);
         this.white = white;
     }
 
@@ -37,7 +36,7 @@ public class Tile {
         {
             batch.draw(TextureHolder.BlackTileTexture, renderX, renderY, WIDTH, HEIGHT);
         }
-        font.draw(batch, TilePositionGenerator.getPositionString(x,y), (renderX + 50), (renderY + 50));
+        font.draw(batch, TilePositionGenerator.getPositionString(position.getX(), position.getY()), (renderX + 75), (renderY + 95));
         if(kingChecked)
         {
             batch.draw(TextureHolder.KingCheckTexture, renderX, renderY, WIDTH, HEIGHT);
@@ -51,7 +50,7 @@ public class Tile {
 
     public boolean isThisCorrectTile(int x, int y)
     {
-        return this.x == x && this.y == y;
+        return this.position.getX() == x && this.position.getY() == y;
     }
 
     public void update(float dt) {
@@ -75,5 +74,13 @@ public class Tile {
 
     public void setCanMoveHere() {
         this.canMoveHere = true;
+    }
+
+    public Position getPosition() {
+        return this.position;
+    }
+
+    public Position getRenderPosition() {
+        return new Position(renderX, renderY);
     }
 }

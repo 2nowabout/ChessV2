@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class LocalGameState extends State {
 
-    protected LocalGameState() {
-        super();
+    public LocalGameState(GameStateManager gsm) {
+        super(gsm);
 
     }
 

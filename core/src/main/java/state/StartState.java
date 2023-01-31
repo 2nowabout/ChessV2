@@ -16,8 +16,8 @@ public class StartState extends State {
 
     private List<IButtons> buttons;
 
-    public StartState() {
-        super();
+    public StartState(GameStateManager gsm) {
+        super(gsm);
         buttons = new ArrayList<>();
 
         Buttons localPlay = new Buttons(((Gdx.graphics.getWidth() / 5) * 2), ((Gdx.graphics.getHeight() / 5) * 4), "LocalPlay",0,0, "");
@@ -29,6 +29,7 @@ public class StartState extends State {
         buttons.add(multiPlayer);
     }
 
+
     @Override
     protected void handleInput() {
         for (IButtons button : buttons) {
@@ -39,12 +40,12 @@ public class StartState extends State {
                     case "LocalPlay":
                         gsm.setLocalPlay(true);
                         gsm.setSinglePlayer(false);
-                        gsm.push(new LocalGameState());
+                        gsm.push(new LocalGameState(gsm));
                         break;
                     case "SinglePlayer":
                         gsm.setLocalPlay(false);
                         gsm.setSinglePlayer(true);
-                        gsm.push(new SinglePlayerGameState());
+                        gsm.push(new SinglePlayerGameState(gsm));
                         break;
                     case "MultiPlayer":
                         throw new NotImplementedException();

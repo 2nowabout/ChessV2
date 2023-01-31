@@ -18,7 +18,7 @@ public class ChessV2 extends ApplicationAdapter {
         batch = new SpriteBatch();
         gsm = new GameStateManager();
         Gdx.gl.glClearColor(1, 1, 1, 1);
-        gsm.push(new StartState());
+        gsm.push(new StartState(gsm));
     }
 
     @Override

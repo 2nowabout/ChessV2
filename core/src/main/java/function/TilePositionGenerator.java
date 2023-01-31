@@ -4,10 +4,10 @@ public class TilePositionGenerator {
     private TilePositionGenerator() {
     }
 
-    private static Character[] vertical = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+    private static Character[] horizontal = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 
     public static String getPositionString(int x, int y)
     {
-        return vertical[y].toString() + (x + 1);
+        return horizontal[x].toString() + (y + 1);
     }
 }

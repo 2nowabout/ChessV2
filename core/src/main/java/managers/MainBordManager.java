@@ -10,9 +10,15 @@ public class MainBordManager {
 
     private ArrayList<Tile> bord;
 
-    public MainBordManager() {
+    public MainBordManager(boolean white) {
         GenerateBord generator = new GenerateBord();
-        bord = generator.generate();
+        if(white) {
+            bord = generator.generateWhiteView();
+        }
+        else {
+            bord = generator.generateBlackView();
+        }
+
     }
 
     public void draw(SpriteBatch batch)
@@ -20,5 +26,9 @@ public class MainBordManager {
         for (Tile tile: bord) {
             tile.render(batch);
         }
+    }
+
+    public ArrayList<Tile> getBord() {
+        return bord;
     }
 }

@@ -1,17 +1,18 @@
 package state;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import managers.GameManager;
 import managers.MainBordManager;
 
 
 public class SinglePlayerGameState extends State {
 
-    private MainBordManager bordManager;
+    private GameManager manager;
 
 
-    protected SinglePlayerGameState() {
-        super();
-        bordManager = new MainBordManager();
+    public SinglePlayerGameState(GameStateManager gsm) {
+        super(gsm);
+        manager = new GameManager(true);
     }
 
     @Override
@@ -21,13 +22,13 @@ public class SinglePlayerGameState extends State {
 
     @Override
     public void update(float dt) {
-
+        handleInput();
     }
 
     @Override
     public void render(SpriteBatch sb) {
         sb.begin();
-        bordManager.draw(sb);
+        manager.draw(sb);
         sb.end();
     }
 

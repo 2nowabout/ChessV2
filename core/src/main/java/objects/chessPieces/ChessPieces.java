@@ -42,12 +42,16 @@ public abstract class ChessPieces {
     }
 
     public abstract void render(SpriteBatch sb);
-    public abstract void update(float dt);
+    public abstract void update(float dt, int renderX, int renderY);
     public boolean isWhite(){
         return white;
     }
     public Position getPosition() {
         return new Position(x, y);
+    }
+
+    public int getPoints() {
+        return points;
     }
 
     public abstract void doMove(Move move);

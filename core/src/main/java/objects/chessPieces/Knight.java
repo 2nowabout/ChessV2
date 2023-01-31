@@ -30,8 +30,9 @@ public class Knight extends ChessPieces {
     }
 
     @Override
-    public void update(float dt) {
-
+    public void update(float dt, int renderX, int renderY) {
+        this.renderX = renderX;
+        this.renderY = renderY;
     }
 
     @Override
@@ -40,6 +41,7 @@ public class Knight extends ChessPieces {
         {
             this.x = move.getNewX();
             this.y = move.getNewY();
+            return;
         }
         throw new IllegalArgumentException("Old Move cordinates dont allign, Hacking?");
     }

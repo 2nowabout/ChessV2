@@ -9,9 +9,9 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-		config.setMaximized(true);
+		config.setMaximized(false);
 		config.setWindowedMode(1920,1080);
-		config.setForegroundFPS(60);
+		config.setForegroundFPS(30);
 		config.setTitle("ChessV2");
 		new Lwjgl3Application(new ChessV2(), config);
 	}

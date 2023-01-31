@@ -26,8 +26,8 @@ public class RegisterState extends State {
     //private RestCommunicator restCommunicator;
     private Skin skin = new Skin(Gdx.files.internal("flat-earth-ui.json"));
 
-    public RegisterState() {
-        super();
+    public RegisterState(GameStateManager gsm) {
+        super(gsm);
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
         //restCommunicator = new RestCommunicator();

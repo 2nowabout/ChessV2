@@ -1,3 +1,5 @@
+package chessPiecesTest;
+
 import objects.chessPieces.ChessPieces;
 import objects.chessPieces.Pawn;
 import org.junit.Test;
@@ -45,5 +47,28 @@ public class PawnTests {
         assertEquals(expectedMove.get(0).getOldX(), moves.get(0).getOldX());
         assertEquals(expectedMove.get(0).getOldY(), moves.get(0).getOldY());
         assertEquals(expectedMove.size(), moves.size()); //size should be 3, 2 forward and one attack
+    }
+
+    @Test
+    public void PawnCheckPoints()
+    {
+        Pawn pawn = new Pawn(true, 2,2);
+        assertEquals(10, pawn.getPoints());
+    }
+
+    @Test
+    public void PawnCheckIfMoved()
+    {
+        Pawn pawn = new Pawn(true, 2, 2);
+        pawn.doMove(new Move(2,2,3,2));
+        assertEquals(3, pawn.getPosition().getX());
+        assertEquals(2, pawn.getPosition().getY());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void PawnCheckMoveHacking()
+    {
+        Pawn pawn = new Pawn(true, 2, 2);
+        pawn.doMove(new Move(2,3,3,2));
     }
 }
