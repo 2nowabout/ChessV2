@@ -1,7 +1,6 @@
 package com.now.chessv2;
 
-import com.ChessV2;
-import com.badlogic.gdx.Gdx;
+import starter.ChessV2;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 

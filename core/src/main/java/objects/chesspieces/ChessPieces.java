@@ -57,9 +57,18 @@ public abstract class ChessPieces {
         return points;
     }
 
-    public abstract void doMove(Move move);
+    public abstract void doMove(Move move, Position renderPosition);
 
     public abstract ArrayList<Move> getMoves(ArrayList<ChessPieces> allPieces);
 
     public abstract ArrayList<ArrayList<Double>> getFieldPoints();
+
+    public boolean isClicked(Rectangle mouse)
+    {
+        if(mouse.intersects(rectangle))
+        {
+            return true;
+        }
+        return false;
+    }
 }

@@ -5,7 +5,9 @@ import move_rules.ChessPieceMoves;
 import objects.FieldPoints;
 import objects.TextureHolder;
 import save_libraries.Move;
+import save_libraries.Position;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Pawn extends ChessPieces {
@@ -30,7 +32,7 @@ public class Pawn extends ChessPieces {
     }
 
     @Override
-    public void doMove(Move move) {
+    public void doMove(Move move, Position renderPosition) {
         if(this.x == move.getOldX() && this.y == move.getOldY())
         {
             if(firstmove)
@@ -39,6 +41,9 @@ public class Pawn extends ChessPieces {
             }
             this.x = move.getNewX();
             this.y = move.getNewY();
+            this.renderX = renderPosition.getX();
+            this.renderY = renderPosition.getY();
+            rectangle = new Rectangle(renderX, renderY, WIDTH, HEIGHT);
             return;
         }
         throw new IllegalArgumentException("Old Move cordinates dont allign, Hacking?");

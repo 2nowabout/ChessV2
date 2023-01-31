@@ -23,6 +23,7 @@ public class Tile {
     public Tile(boolean white, int renderX, int renderY, int x, int y) {
         this.renderX = renderX;
         this.renderY = renderY;
+        this.rectangle = new Rectangle(renderX, renderY, WIDTH, HEIGHT);
         this.position = new Position(x,y);
         this.white = white;
     }
@@ -82,5 +83,9 @@ public class Tile {
 
     public Position getRenderPosition() {
         return new Position(renderX, renderY);
+    }
+
+    public boolean isClicked(Rectangle mouse) {
+        return rectangle.intersects(mouse);
     }
 }

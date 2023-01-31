@@ -8,6 +8,6 @@ public class TilePositionGenerator {
 
     public static String getPositionString(int x, int y)
     {
-        return horizontal[x].toString() + (y + 1);
+        return horizontal[x -1].toString() + (y);
     }
 }

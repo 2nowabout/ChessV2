@@ -23,10 +23,10 @@ public class GenerateBord {
         int originalxPos = 560;
         int xPos = originalxPos;
         int yPos = originalyPos;
-        boolean whiteTile = true;
+        boolean whiteTile = false;
 
-        for (int y = 0; y < 8; y++) {
-            for (int x = 0; x < 8; x++) {
+        for (int y = 1; y < 9; y++) {
+            for (int x = 1; x < 9; x++) {
                 if (whiteTile) {
                     Tile tile = new Tile(whiteTile, xPos, yPos, x, y);
                     bord.add(tile);
@@ -44,11 +44,7 @@ public class GenerateBord {
                     } else {
                         yPos = yPos - 100;
                     }
-                    if (y % 2 == 0) {
-                        whiteTile = false;
-                    } else {
-                        whiteTile = true;
-                    }
+                    whiteTile = y % 2 != 0;
                 } else {
                     xPos = xPos + 100;
                 }

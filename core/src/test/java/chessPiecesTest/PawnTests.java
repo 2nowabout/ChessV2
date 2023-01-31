@@ -20,8 +20,8 @@ public class PawnTests {
         allPieces.add(enemy);
         ArrayList<Move> moves = pawn.getMoves(allPieces);
         ArrayList<Move> expectedMove = new ArrayList<>();
-        expectedMove.add(new Move(3,3,3,2));
-        expectedMove.add(new Move(3,3,3,1));
+        expectedMove.add(new Move(3,3,3,4));
+        expectedMove.add(new Move(3,3,3,5));
         assertEquals(expectedMove.get(0).getNewX(), moves.get(0).getNewX());
         assertEquals(expectedMove.get(0).getNewY(), moves.get(0).getNewY());
         assertEquals(expectedMove.get(0).getOldX(), moves.get(0).getOldX());
@@ -33,15 +33,15 @@ public class PawnTests {
     public void PawnMovementAttackTest()
     {
         Pawn pawn = new Pawn(true, 3, 3);
-        Pawn enemy = new Pawn(false, 4,2);
+        Pawn enemy = new Pawn(false, 4,4);
         ArrayList<ChessPieces> allPieces = new ArrayList<>();
         allPieces.add(pawn);
         allPieces.add(enemy);
         ArrayList<Move> moves = pawn.getMoves(allPieces);
         ArrayList<Move> expectedMove = new ArrayList<>();
-        expectedMove.add(new Move(3,3,3,2));
-        expectedMove.add(new Move(3,3,3,1));
-        expectedMove.add(new Move(3,3,4,2));
+        expectedMove.add(new Move(3,3,3,4));
+        expectedMove.add(new Move(3,3,3,5));
+        expectedMove.add(new Move(3,3,4,4));
         assertEquals(expectedMove.get(0).getNewX(), moves.get(0).getNewX());
         assertEquals(expectedMove.get(0).getNewY(), moves.get(0).getNewY());
         assertEquals(expectedMove.get(0).getOldX(), moves.get(0).getOldX());
