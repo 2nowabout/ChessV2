@@ -12,13 +12,7 @@ public class MainBordManager {
 
     public MainBordManager(boolean white) {
         GenerateBord generator = new GenerateBord();
-        if(white) {
-            bord = generator.generateWhiteView();
-        }
-        else {
-            bord = generator.generateBlackView();
-        }
-
+        bord = generator.generate(white);
     }
 
     public void draw(SpriteBatch batch)
