@@ -10,29 +10,13 @@ import java.util.ArrayList;
 public class ChessPieceMoves {
     private ChessPieceMoves() { throw new IllegalStateException(); }
 
+    private static ArrayList<Position> allEnemyPositions = new ArrayList<>();
+    private static ArrayList<Position> allAllyPositions = new ArrayList<>();
+
     public static ArrayList<Move> calcPawnMoves(int x, int y, boolean white, ArrayList<ChessPieces> allPieces, boolean firstmove) {
         ArrayList<Move> possibleMoves = new ArrayList<>();
-        ArrayList<Position> allEnemyPositions = new ArrayList<>();
-        ArrayList<Position> allAllyPositions = new ArrayList<>();
         ArrayList<MoveToCheck> toCheckMoves = new ArrayList<>();
-        for (ChessPieces otherPiece : allPieces) {
-            if(white)
-            {
-                if (!otherPiece.isWhite()) {
-                    allEnemyPositions.add(otherPiece.getPosition());
-                } else {
-                    allAllyPositions.add(otherPiece.getPosition());
-                }
-            }
-            else
-            {
-                if (otherPiece.isWhite()) {
-                    allEnemyPositions.add(otherPiece.getPosition());
-                } else {
-                    allAllyPositions.add(otherPiece.getPosition());
-                }
-            }
-        }
+        getAllyAndEnemy(white, allPieces);
             if (white) {
                 toCheckMoves.add(new MoveToCheck(false, new Position(x, y + 1)));
                 if(firstmove) {
@@ -79,26 +63,7 @@ public class ChessPieceMoves {
 
     public static ArrayList<Move> calcRookMoves(int x, int y, boolean white, ArrayList<ChessPieces> allPieces) {
         ArrayList<Move> possibleMoves = new ArrayList<>();
-        ArrayList<Position> allEnemyPositions = new ArrayList<>();
-        ArrayList<Position> allAllyPositions = new ArrayList<>();
-        for (ChessPieces otherPiece : allPieces) {
-            if(white)
-            {
-                if (!otherPiece.isWhite()) {
-                    allEnemyPositions.add(otherPiece.getPosition());
-                } else {
-                    allAllyPositions.add(otherPiece.getPosition());
-                }
-            }
-            else
-            {
-                if (otherPiece.isWhite()) {
-                    allEnemyPositions.add(otherPiece.getPosition());
-                } else {
-                    allAllyPositions.add(otherPiece.getPosition());
-                }
-            }
-        }
+        getAllyAndEnemy(white, allPieces);
         boolean leftStopt = false;
         boolean rightStopt = false;
         boolean upStopt = false;
@@ -171,26 +136,7 @@ public class ChessPieceMoves {
 
     public static ArrayList<Move> calcKnightMoves(int x, int y, boolean white, ArrayList<ChessPieces> allPieces) {
         ArrayList<Move> possibleMoves = new ArrayList<>();
-        ArrayList<Position> allEnemyPositions = new ArrayList<>();
-        ArrayList<Position> allAllyPositions = new ArrayList<>();
-        for (ChessPieces otherPiece : allPieces) {
-            if(white)
-            {
-                if (!otherPiece.isWhite()) {
-                    allEnemyPositions.add(otherPiece.getPosition());
-                } else {
-                    allAllyPositions.add(otherPiece.getPosition());
-                }
-            }
-            else
-            {
-                if (otherPiece.isWhite()) {
-                    allEnemyPositions.add(otherPiece.getPosition());
-                } else {
-                    allAllyPositions.add(otherPiece.getPosition());
-                }
-            }
-        }
+        getAllyAndEnemy(white, allPieces);
         ArrayList<Position> movesToTest = new ArrayList<>();
         movesToTest.add(new Position(x+2, y+1));
         movesToTest.add(new Position(x+1, y+2));
@@ -220,26 +166,7 @@ public class ChessPieceMoves {
 
     public static ArrayList<Move> calcBishopMoves(int x, int y, boolean white, ArrayList<ChessPieces> allPieces) {
         ArrayList<Move> possibleMoves = new ArrayList<>();
-        ArrayList<Position> allEnemyPositions = new ArrayList<>();
-        ArrayList<Position> allAllyPositions = new ArrayList<>();
-        for (ChessPieces otherPiece : allPieces) {
-            if(white)
-            {
-                if (!otherPiece.isWhite()) {
-                    allEnemyPositions.add(otherPiece.getPosition());
-                } else {
-                    allAllyPositions.add(otherPiece.getPosition());
-                }
-            }
-            else
-            {
-                if (otherPiece.isWhite()) {
-                    allEnemyPositions.add(otherPiece.getPosition());
-                } else {
-                    allAllyPositions.add(otherPiece.getPosition());
-                }
-            }
-        }
+        getAllyAndEnemy(white, allPieces);
         boolean leftStopt = false;
         boolean rightStopt = false;
         boolean upStopt = false;
@@ -322,5 +249,27 @@ public class ChessPieceMoves {
 
     private static boolean checkOutsideBorder(Position move) {
         return move.getY() >= 9 || move.getY() <= 0 || move.getX() >= 9 || move.getX() <= 0;
+    }
+
+    private static void getAllyAndEnemy(boolean white, ArrayList<ChessPieces> allPieces)
+    {
+        for (ChessPieces otherPiece : allPieces) {
+            if(white)
+            {
+                if (!otherPiece.isWhite()) {
+                    allEnemyPositions.add(otherPiece.getPosition());
+                } else {
+                    allAllyPositions.add(otherPiece.getPosition());
+                }
+            }
+            else
+            {
+                if (otherPiece.isWhite()) {
+                    allEnemyPositions.add(otherPiece.getPosition());
+                } else {
+                    allAllyPositions.add(otherPiece.getPosition());
+                }
+            }
+        }
     }
 }
