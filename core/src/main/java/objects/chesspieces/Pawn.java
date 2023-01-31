@@ -30,12 +30,6 @@ public class Pawn extends ChessPieces {
     }
 
     @Override
-    public void update(float dt, int renderX, int renderY) {
-        this.renderX = renderX;
-        this.renderY = renderY;
-    }
-
-    @Override
     public void doMove(Move move) {
         if(this.x == move.getOldX() && this.y == move.getOldY())
         {

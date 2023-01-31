@@ -41,7 +41,11 @@ public abstract class ChessPieces {
     }
 
     public abstract void render(SpriteBatch sb);
-    public abstract void update(float dt, int renderX, int renderY);
+    public void update(float dt, int renderX, int renderY)
+    {
+        this.renderX = renderX;
+        this.renderY = renderY;
+    }
     public boolean isWhite(){
         return white;
     }
