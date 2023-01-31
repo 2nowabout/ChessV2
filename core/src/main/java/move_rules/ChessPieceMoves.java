@@ -253,6 +253,8 @@ public class ChessPieceMoves {
 
     private static void getAllyAndEnemy(boolean white, ArrayList<ChessPieces> allPieces)
     {
+        allEnemyPositions = new ArrayList<>();
+        allAllyPositions = new ArrayList<>();
         for (ChessPieces otherPiece : allPieces) {
             if(white)
             {
