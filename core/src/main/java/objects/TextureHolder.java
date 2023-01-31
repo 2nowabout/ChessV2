@@ -3,6 +3,7 @@ package objects;
 import com.badlogic.gdx.graphics.Texture;
 
 public class TextureHolder {
+    private TextureHolder() { throw new IllegalStateException(); }
     public static final Texture PossibleMoveTexture = new Texture("PossibleTile.png");
     public static final Texture KingCheckTexture = new Texture("kingChecked.png");
     public static final Texture WhiteTileTexture = new Texture("WhiteTile.png");

@@ -24,7 +24,7 @@ public abstract class ChessPieces {
     protected Rectangle rectangle;
     protected ArrayList<Position> possibleMoves;
 
-    public ChessPieces(boolean white, int x, int y)
+    protected ChessPieces(boolean white, int x, int y)
     {
         this.white = white;
         this.x = x;
