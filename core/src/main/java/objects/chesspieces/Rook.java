@@ -1,20 +1,24 @@
-package objects.chessPieces;
+package objects.chesspieces;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import moveRules.ChessPieceMoves;
+import move_rules.ChessPieceMoves;
 import objects.FieldPoints;
 import objects.TextureHolder;
-import saveLibraries.Move;
+import save_libraries.Move;
 
 import java.util.ArrayList;
 
-public class Bishop extends ChessPieces {
-    public Bishop(boolean white, int x, int y) {
+public class Rook extends ChessPieces {
+
+    private boolean firstmove;
+
+    public Rook(boolean white, int x, int y) {
         super(white, x, y);
+        firstmove = true;
         if (white) {
-            points = 30;
+            points = 50;
         } else {
-            points = -30;
+            points = -50;
         }
     }
 
@@ -22,10 +26,10 @@ public class Bishop extends ChessPieces {
     public void render(SpriteBatch sb) {
         if(white)
         {
-            sb.draw(TextureHolder.WhiteBishopTexture, renderX, renderY, WIDTH, HEIGHT);
+            sb.draw(TextureHolder.WhiteRookTexture, renderX, renderY, WIDTH, HEIGHT);
         }
         else {
-            sb.draw(TextureHolder.BlackBishopTexture, renderX, renderY, WIDTH, HEIGHT);
+            sb.draw(TextureHolder.BlackRookTexture, renderX, renderY, WIDTH, HEIGHT);
         }
     }
 
@@ -39,21 +43,24 @@ public class Bishop extends ChessPieces {
     public void doMove(Move move) {
         if(this.x == move.getOldX() && this.y == move.getOldY())
         {
+            if(firstmove)
+            {
+                firstmove = false;
+            }
             this.x = move.getNewX();
             this.y = move.getNewY();
             return;
         }
         throw new IllegalArgumentException("Old Move cordinates dont allign, Hacking?");
-
     }
 
     @Override
     public ArrayList<Move> getMoves(ArrayList<ChessPieces> allPieces) {
-        return ChessPieceMoves.calcBishopMoves(this.x, this.y, this.white, allPieces);
+        return ChessPieceMoves.calcRookMoves(this.x, this.y, this.white, allPieces);
     }
 
     @Override
     public ArrayList<ArrayList<Double>> getFieldPoints() {
-        return FieldPoints.BishopPoints();
+        return FieldPoints.rookPoints();
     }
 }

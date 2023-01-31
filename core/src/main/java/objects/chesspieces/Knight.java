@@ -1,20 +1,20 @@
-package objects.chessPieces;
+package objects.chesspieces;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import moveRules.ChessPieceMoves;
+import move_rules.ChessPieceMoves;
 import objects.FieldPoints;
 import objects.TextureHolder;
-import saveLibraries.Move;
+import save_libraries.Move;
 
 import java.util.ArrayList;
 
-public class King extends ChessPieces {
-    public King(boolean white, int x, int y) {
+public class Knight extends ChessPieces {
+    public Knight(boolean white, int x, int y) {
         super(white, x, y);
         if (white) {
-            points = 900;
+            points = 30;
         } else {
-            points = -900;
+            points = -30;
         }
     }
 
@@ -22,10 +22,10 @@ public class King extends ChessPieces {
     public void render(SpriteBatch sb) {
         if(white)
         {
-            sb.draw(TextureHolder.WhiteKingTexture, renderX, renderY, WIDTH, HEIGHT);
+            sb.draw(TextureHolder.WhiteKnightTexture, renderX, renderY, WIDTH, HEIGHT);
         }
         else {
-            sb.draw(TextureHolder.BlackKingTexture, renderX, renderY, WIDTH, HEIGHT);
+            sb.draw(TextureHolder.BlackKnightTexture, renderX, renderY, WIDTH, HEIGHT);
         }
     }
 
@@ -44,16 +44,15 @@ public class King extends ChessPieces {
             return;
         }
         throw new IllegalArgumentException("Old Move cordinates dont allign, Hacking?");
-
     }
 
     @Override
     public ArrayList<Move> getMoves(ArrayList<ChessPieces> allPieces) {
-        return ChessPieceMoves.calcKingMoves(this.x, this.y, this.white, allPieces);
+        return ChessPieceMoves.calcKnightMoves(this.x, this.y, this.white, allPieces);
     }
 
     @Override
     public ArrayList<ArrayList<Double>> getFieldPoints() {
-        return FieldPoints.KingPoints();
+        return FieldPoints.knightPoints();
     }
 }

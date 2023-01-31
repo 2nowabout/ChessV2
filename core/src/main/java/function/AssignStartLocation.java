@@ -1,14 +1,15 @@
 package function;
 
 import objects.Tile;
-import objects.chessPieces.ChessPieces;
+import objects.chesspieces.ChessPieces;
 
 import java.util.ArrayList;
 
 public class AssignStartLocation {
-    public AssignStartLocation() {}
+    public AssignStartLocation() { //sonarcloud wanted this
+        }
 
-    public void AssignStartRenderLocation(ArrayList<ChessPieces> chessPieces, ArrayList<Tile> bord)
+    public void assignStartRenderLocation(ArrayList<ChessPieces> chessPieces, ArrayList<Tile> bord)
     {
         for (ChessPieces chesspiece: chessPieces) {
             for (Tile tile: bord) {

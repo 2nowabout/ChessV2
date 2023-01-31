@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class FieldPoints {
-    public static ArrayList<ArrayList<Double>> PawnPoints()
+    private FieldPoints() { throw new IllegalStateException(); }
+    public static ArrayList<ArrayList<Double>> pawnPoints()
     {
         ArrayList<Double> y1 = new ArrayList<>(Arrays.asList(0.0,0.0,0.0,0.0, 0.0,0.0,0.0,0.0));
         ArrayList<Double> y2 = new ArrayList<>(Arrays.asList(5.0,5.0,5.0,5.0, 5.0,5.0,5.0,5.0));
@@ -19,7 +20,7 @@ public class FieldPoints {
         fieldPoints.add(y5); fieldPoints.add(y6); fieldPoints.add(y7); fieldPoints.add(y8);
         return fieldPoints;
     }
-    public static ArrayList<ArrayList<Double>> BishopPoints()
+    public static ArrayList<ArrayList<Double>> bishopPoints()
     {
         ArrayList<Double> y1 = new ArrayList<>(Arrays.asList(-2.0,-1.0,-1.0,-1.0, -1.0,-1.0,-1.0,-2.0));
         ArrayList<Double> y2 = new ArrayList<>(Arrays.asList(-1.0,0.0,0.0,0.0, 0.0,0.0,0.0,-1.0));
@@ -34,7 +35,7 @@ public class FieldPoints {
         fieldPoints.add(y5); fieldPoints.add(y6); fieldPoints.add(y7); fieldPoints.add(y8);
         return fieldPoints;
     }
-    public static ArrayList<ArrayList<Double>> KingPoints()
+    public static ArrayList<ArrayList<Double>> kingPoints()
     {
         ArrayList<Double> y1 = new ArrayList<>(Arrays.asList(-3.0,-4.0,-4.0,-5.0, -5.0,-4.0,-4.0,-3.0));
         ArrayList<Double> y2 = new ArrayList<>(Arrays.asList(-3.0,-4.0,-4.0,-5.0, -5.0,-4.0,-4.0,-3.0));
@@ -49,7 +50,7 @@ public class FieldPoints {
         fieldPoints.add(y5); fieldPoints.add(y6); fieldPoints.add(y7); fieldPoints.add(y8);
         return fieldPoints;
     }
-    public static ArrayList<ArrayList<Double>> QueenPoints()
+    public static ArrayList<ArrayList<Double>> queenPoints()
     {
         ArrayList<Double> y1 = new ArrayList<>(Arrays.asList(-2.0,-1.0,-1.0,-0.5, -0.5,-1.0,-1.0,-2.0));
         ArrayList<Double> y2 = new ArrayList<>(Arrays.asList(-1.0,0.0,0.0,0.0, 0.0,0.0,0.0,-1.0));
@@ -64,7 +65,7 @@ public class FieldPoints {
         fieldPoints.add(y5); fieldPoints.add(y6); fieldPoints.add(y7); fieldPoints.add(y8);
         return fieldPoints;
     }
-    public static ArrayList<ArrayList<Double>> RookPoints()
+    public static ArrayList<ArrayList<Double>> rookPoints()
     {
         ArrayList<Double> y1 = new ArrayList<>(Arrays.asList(0.0,0.0,0.0,0.0, 0.0,0.0,0.0,0.0));
         ArrayList<Double> y2 = new ArrayList<>(Arrays.asList(0.5,1.0,1.0,1.0, 1.0,1.0,1.0,0.5));
@@ -79,7 +80,7 @@ public class FieldPoints {
         fieldPoints.add(y5); fieldPoints.add(y6); fieldPoints.add(y7); fieldPoints.add(y8);
         return fieldPoints;
     }
-    public static ArrayList<ArrayList<Double>> KnightPoints()
+    public static ArrayList<ArrayList<Double>> knightPoints()
     {
         ArrayList<Double> y1 = new ArrayList<>(Arrays.asList(-5.0,-4.0,-3.0,-3.0, -3.0,-3.0,-4.0,-5.0));
         ArrayList<Double> y2 = new ArrayList<>(Arrays.asList(-4.0,-2.0,0.0,0.0, 0.0,0.0,-2.0,-4.0));

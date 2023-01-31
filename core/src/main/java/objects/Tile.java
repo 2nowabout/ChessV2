@@ -3,7 +3,7 @@ package objects;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import function.TilePositionGenerator;
-import saveLibraries.Position;
+import save_libraries.Position;
 
 import java.awt.*;
 

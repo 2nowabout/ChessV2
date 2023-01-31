@@ -1,31 +1,31 @@
-package objects.chessPieces;
+package objects.chesspieces;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import moveRules.ChessPieceMoves;
+import move_rules.ChessPieceMoves;
 import objects.FieldPoints;
 import objects.TextureHolder;
-import saveLibraries.Move;
+import save_libraries.Move;
 
 import java.util.ArrayList;
 
-public class Queen extends ChessPieces {
-    public Queen(boolean white, int x, int y) {
+public class Pawn extends ChessPieces {
+
+    private boolean firstmove;
+
+    public Pawn(boolean white, int x, int y) {
         super(white, x, y);
-        if (white) {
-            points = 90;
-        } else {
-            points = -90;
-        }
+        firstmove = true;
+        points = 10;
     }
 
     @Override
     public void render(SpriteBatch sb) {
         if(white)
         {
-            sb.draw(TextureHolder.WhiteQueenTexture, renderX, renderY, WIDTH, HEIGHT);
+            sb.draw(TextureHolder.WhitePawnTexture, renderX, renderY, WIDTH, HEIGHT);
         }
         else {
-            sb.draw(TextureHolder.BlackQueenTexture, renderX, renderY, WIDTH, HEIGHT);
+            sb.draw(TextureHolder.BlackPawnTexture, renderX, renderY, WIDTH, HEIGHT);
         }
     }
 
@@ -39,6 +39,10 @@ public class Queen extends ChessPieces {
     public void doMove(Move move) {
         if(this.x == move.getOldX() && this.y == move.getOldY())
         {
+            if(firstmove)
+            {
+                firstmove = false;
+            }
             this.x = move.getNewX();
             this.y = move.getNewY();
             return;
@@ -48,11 +52,13 @@ public class Queen extends ChessPieces {
 
     @Override
     public ArrayList<Move> getMoves(ArrayList<ChessPieces> allPieces) {
-        return ChessPieceMoves.calcQueenMoves(this.x, this.y, white, allPieces);
+        return ChessPieceMoves.calcPawnMoves(x,y,white,allPieces,firstmove);
     }
 
     @Override
     public ArrayList<ArrayList<Double>> getFieldPoints() {
-        return FieldPoints.QueenPoints();
+
+        return FieldPoints.pawnPoints();
     }
+
 }

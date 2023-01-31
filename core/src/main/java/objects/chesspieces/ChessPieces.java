@@ -1,9 +1,8 @@
-package objects.chessPieces;
+package objects.chesspieces;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import moveRules.ChessPieceMoves;
-import saveLibraries.Move;
-import saveLibraries.Position;
+import save_libraries.Move;
+import save_libraries.Position;
 
 import java.awt.*;
 import java.util.ArrayList;

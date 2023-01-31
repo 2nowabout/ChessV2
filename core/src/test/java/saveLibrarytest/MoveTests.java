@@ -1,7 +1,7 @@
 package saveLibrarytest;
 
 import org.junit.Test;
-import saveLibraries.Move;
+import save_libraries.Move;
 
 import static org.junit.Assert.*;
 

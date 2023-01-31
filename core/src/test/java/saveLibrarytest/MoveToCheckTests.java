@@ -1,9 +1,8 @@
 package saveLibrarytest;
 
 import org.junit.Test;
-import saveLibraries.Move;
-import saveLibraries.MoveToCheck;
-import saveLibraries.Position;
+import save_libraries.MoveToCheck;
+import save_libraries.Position;
 
 import static org.junit.Assert.*;
 

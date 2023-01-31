@@ -1,6 +1,6 @@
 package function;
 
-import objects.chessPieces.*;
+import objects.chesspieces.*;
 
 import java.util.ArrayList;
 

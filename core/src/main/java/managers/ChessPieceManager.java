@@ -2,8 +2,7 @@ package managers;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import function.GeneratePieces;
-import objects.Tile;
-import objects.chessPieces.ChessPieces;
+import objects.chesspieces.ChessPieces;
 
 import java.util.ArrayList;
 

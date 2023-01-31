@@ -1,9 +1,9 @@
 package chessPiecesTest;
 
-import objects.chessPieces.ChessPieces;
-import objects.chessPieces.Pawn;
+import objects.chesspieces.ChessPieces;
+import objects.chesspieces.Pawn;
 import org.junit.Test;
-import saveLibraries.Move;
+import save_libraries.Move;
 
 import java.util.ArrayList;
 import static org.junit.Assert.*;

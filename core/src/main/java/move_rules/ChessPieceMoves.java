@@ -1,15 +1,14 @@
-package moveRules;
+package move_rules;
 
-import objects.chessPieces.ChessPieces;
-import saveLibraries.Move;
-import saveLibraries.MoveToCheck;
-import saveLibraries.Position;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import objects.chesspieces.ChessPieces;
+import save_libraries.Move;
+import save_libraries.MoveToCheck;
+import save_libraries.Position;
 
 import java.util.ArrayList;
 
 public class ChessPieceMoves {
-    private ChessPieceMoves() {}
+    private ChessPieceMoves() { throw new IllegalStateException(); }
 
     public static ArrayList<Move> calcPawnMoves(int x, int y, boolean white, ArrayList<ChessPieces> allPieces, boolean firstmove) {
         ArrayList<Move> possibleMoves = new ArrayList<>();
@@ -47,14 +46,7 @@ public class ChessPieceMoves {
             }
         }
         for (MoveToCheck pos : toCheckMoves) {
-            boolean positionSafe = true;
-            if(allEnemyPositions.isEmpty())
-            {
-                positionSafe = false;
-            }
-            if (checkOutsideBorder(pos.getPosition())) {
-                positionSafe = false;
-            }
+            boolean positionSafe = !allEnemyPositions.isEmpty() && !checkOutsideBorder(pos.getPosition());
             if(positionSafe) {
                 for (Position enemyPos : allEnemyPositions) {
                     if (pos.getPosition().equals(enemyPos) && !pos.isAttack()) {
@@ -279,10 +271,10 @@ public class ChessPieceMoves {
     }
 
     public static ArrayList<Move> calcKingMoves(int x, int y, boolean white, ArrayList<ChessPieces> allPieces) {
-        throw new NotImplementedException();
+        return null; //TODO FIX
     }
 
     private static boolean checkOutsideBorder(Position move) {
-        return move.getY() > 9 || move.getY() < 0 || move.getX() > 9 || move.getX() < 0;
+        return move.getY() >= 9 || move.getY() <= 0 || move.getX() >= 9 || move.getX() <= 0;
     }
 }

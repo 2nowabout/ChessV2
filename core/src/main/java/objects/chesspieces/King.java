@@ -1,20 +1,23 @@
-package objects.chessPieces;
+package objects.chesspieces;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import moveRules.ChessPieceMoves;
+import move_rules.ChessPieceMoves;
 import objects.FieldPoints;
 import objects.TextureHolder;
-import saveLibraries.Move;
+import save_libraries.Move;
 
 import java.util.ArrayList;
 
-public class Knight extends ChessPieces {
-    public Knight(boolean white, int x, int y) {
+public class King extends ChessPieces {
+
+    private boolean firstmove;
+    public King(boolean white, int x, int y) {
         super(white, x, y);
+        firstmove = true;
         if (white) {
-            points = 30;
+            points = 900;
         } else {
-            points = -30;
+            points = -900;
         }
     }
 
@@ -22,10 +25,10 @@ public class Knight extends ChessPieces {
     public void render(SpriteBatch sb) {
         if(white)
         {
-            sb.draw(TextureHolder.WhiteKnightTexture, renderX, renderY, WIDTH, HEIGHT);
+            sb.draw(TextureHolder.WhiteKingTexture, renderX, renderY, WIDTH, HEIGHT);
         }
         else {
-            sb.draw(TextureHolder.BlackKnightTexture, renderX, renderY, WIDTH, HEIGHT);
+            sb.draw(TextureHolder.BlackKingTexture, renderX, renderY, WIDTH, HEIGHT);
         }
     }
 
@@ -39,6 +42,10 @@ public class Knight extends ChessPieces {
     public void doMove(Move move) {
         if(this.x == move.getOldX() && this.y == move.getOldY())
         {
+            if(firstmove)
+            {
+                firstmove = false;
+            }
             this.x = move.getNewX();
             this.y = move.getNewY();
             return;
@@ -48,11 +55,11 @@ public class Knight extends ChessPieces {
 
     @Override
     public ArrayList<Move> getMoves(ArrayList<ChessPieces> allPieces) {
-        return ChessPieceMoves.calcKnightMoves(this.x, this.y, this.white, allPieces);
+        return ChessPieceMoves.calcKingMoves(this.x, this.y, this.white, allPieces);
     }
 
     @Override
     public ArrayList<ArrayList<Double>> getFieldPoints() {
-        return FieldPoints.KnightPoints();
+        return FieldPoints.kingPoints();
     }
 }
