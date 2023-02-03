@@ -1,5 +1,7 @@
 package objects.chesspieces;
 
+import ai.botpieces.BotPieces;
+import ai.botpieces.BotQueen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import move_rules.ChessPieceMoves;
 import objects.FieldPoints;
@@ -13,11 +15,7 @@ import java.util.ArrayList;
 public class Queen extends ChessPieces {
     public Queen(boolean white, int x, int y) {
         super(white, x, y);
-        if (white) {
-            points = 90;
-        } else {
-            points = -90;
-        }
+        points = 90;
     }
 
     @Override
@@ -53,5 +51,10 @@ public class Queen extends ChessPieces {
     @Override
     public ArrayList<ArrayList<Double>> getFieldPoints() {
         return FieldPoints.queenPoints();
+    }
+
+    @Override
+    public BotPieces makeCopy() {
+        return new BotQueen(this.white, this.x, this.y, false);
     }
 }

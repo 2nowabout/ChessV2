@@ -4,6 +4,7 @@ import objects.chesspieces.ChessPieces;
 import objects.chesspieces.Bishop;
 import org.junit.Test;
 import save_libraries.Move;
+import save_libraries.Position;
 
 import java.util.ArrayList;
 
@@ -21,8 +22,8 @@ public class BishopTests {
         allPieces.add(enemy);
         ArrayList<Move> moves = bishop.getMoves(allPieces);
         ArrayList<Move> expectedMove = new ArrayList<>();
-        expectedMove.add(new Move(3,3,4,4));
-        expectedMove.add(new Move(3,3,3,1));
+        expectedMove.add(new Move(3,3,4,4, true));
+        expectedMove.add(new Move(3,3,3,1, true));
         assertEquals(expectedMove.get(0).getNewX(), moves.get(0).getNewX());
         assertEquals(expectedMove.get(0).getNewY(), moves.get(0).getNewY());
         assertEquals(expectedMove.get(0).getOldX(), moves.get(0).getOldX());
@@ -53,7 +54,7 @@ public class BishopTests {
     public void BishopCheckIfMoved()
     {
         Bishop bishop = new Bishop(true, 2, 2);
-        bishop.doMove(new Move(2,2,3,2));
+        bishop.doMove(new Move(2,2,3,2, true), new Position(0,0));
         assertEquals(3, bishop.getPosition().getX());
         assertEquals(2, bishop.getPosition().getY());
     }
@@ -62,6 +63,6 @@ public class BishopTests {
     public void BishopCheckMoveHacking()
     {
         Bishop bishop = new Bishop(true, 2, 2);
-        bishop.doMove(new Move(2,3,3,2));
+        bishop.doMove(new Move(2,3,3,2, true), new Position(0,0));
     }
 }

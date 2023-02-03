@@ -5,13 +5,15 @@ public class Move {
     private int oldY;
     private int newX;
     private int newY;
+    private boolean attack;
 
-    public Move(int oldX, int oldY, int newX, int newY)
+    public Move(int oldX, int oldY, int newX, int newY, boolean attack)
     {
         this.oldX = oldX;
         this.oldY = oldY;
         this.newX = newX;
         this.newY = newY;
+        this.attack = attack;
     }
 
     public int getOldX() {
@@ -44,5 +46,13 @@ public class Move {
 
     public void setNewY(int newY) {
         this.newY = newY;
+    }
+
+    public boolean isAttack() {
+        return attack;
+    }
+
+    public void setAttack(boolean attack) {
+        this.attack = attack;
     }
 }

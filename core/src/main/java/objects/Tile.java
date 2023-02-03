@@ -13,6 +13,7 @@ public class Tile {
 
     private boolean canMoveHere = false;
     private boolean kingChecked = false;
+    private boolean possibleAttack = false;
     private boolean white;
     private int renderX;
     private int renderY;
@@ -38,7 +39,7 @@ public class Tile {
             batch.draw(TextureHolder.BlackTileTexture, renderX, renderY, WIDTH, HEIGHT);
         }
         font.draw(batch, TilePositionGenerator.getPositionString(position.getX(), position.getY()), (renderX + 75), (renderY + 95));
-        if(kingChecked)
+        if(kingChecked || possibleAttack)
         {
             batch.draw(TextureHolder.KingCheckTexture, renderX, renderY, WIDTH, HEIGHT);
         }
@@ -67,14 +68,21 @@ public class Tile {
     {
         this.kingChecked = false;
         this.canMoveHere = false;
+        this.possibleAttack = false;
     }
 
     public void setKingChecked() {
         this.kingChecked = true;
     }
 
-    public void setCanMoveHere() {
-        this.canMoveHere = true;
+    public void setCanMoveHere(boolean attack) {
+        if(attack)
+        {
+            possibleAttack = true;
+        }
+        else {
+            this.canMoveHere = true;
+        }
     }
 
     public Position getPosition() {
@@ -88,4 +96,10 @@ public class Tile {
     public boolean isClicked(Rectangle mouse) {
         return rectangle.intersects(mouse);
     }
+
+    public boolean isPossibleAttack() {
+        return possibleAttack;
+    }
+
+
 }

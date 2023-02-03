@@ -4,6 +4,7 @@ import objects.chesspieces.Knight;
 import objects.chesspieces.ChessPieces;
 import org.junit.Test;
 import save_libraries.Move;
+import save_libraries.Position;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,7 @@ public class KnightTests {
     public void KnightCheckIfMoved()
     {
         Knight knight = new Knight(true, 2, 2);
-        knight.doMove(new Move(2,2,3,2));
+        knight.doMove(new Move(2,2,3,2, true), new Position(0,0));
         assertEquals(3, knight.getPosition().getX());
         assertEquals(2, knight.getPosition().getY());
     }
@@ -54,6 +55,6 @@ public class KnightTests {
     public void KnightCheckMoveHacking()
     {
         Knight knight = new Knight(true, 2, 2);
-        knight.doMove(new Move(2,3,3,2));
+        knight.doMove(new Move(2,3,3,2, true), new Position(0,0));
     }
 }

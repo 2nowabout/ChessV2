@@ -16,10 +16,15 @@ public class GameManager {
     private ChessPieceManager chessPieceManager;
     private MainBordManager mainBordManager;
     private boolean white;
+    private boolean local;
+    private boolean singlePlayer;
+    private boolean whiteTurn;
     boolean firstclick = true;
-    public GameManager(boolean white)
+    public GameManager(boolean white, boolean local, boolean singlePlayer)
     {
         this.white = white;
+        this.local = local;
+        this.whiteTurn = true;
         canMoveHere = new ArrayList<>();
         this.chessPieceManager = new ChessPieceManager();
         this.mainBordManager = new MainBordManager(white);
@@ -47,7 +52,7 @@ public class GameManager {
                 for (Move move: allmoves) {
                     if(move.getNewX() == tile.getPosition().getX() && move.getNewY() == tile.getPosition().getY())
                     {
-                        tile.setCanMoveHere();
+                        tile.setCanMoveHere(move.isAttack());
                         canMoveHere.add(tile);
                     }
                 }
@@ -57,9 +62,26 @@ public class GameManager {
             for (Tile tile: canMoveHere) {
                 if(tile.isClicked(mouseRectangle))
                 {
-                    Move move = new Move(clickedPiece.getPosition().getX(), clickedPiece.getPosition().getY(), tile.getPosition().getX(), tile.getPosition().getY());
+                    if(tile.isPossibleAttack())
+                    {
+                        for (ChessPieces chesspiece : chessPieceManager.getAllPieces()) {
+                            if(chesspiece.getPosition().getX() == tile.getPosition().getX() && chesspiece.getPosition().getY() == tile.getPosition().getY())
+                            {
+                                chessPieceManager.killChesspiece(chesspiece);
+                            }
+                        }
+                    }
+                    Move move = new Move(clickedPiece.getPosition().getX(), clickedPiece.getPosition().getY(), tile.getPosition().getX(), tile.getPosition().getY(), true); //attack doesn't matter here
                     clickedPiece.doMove(move, tile.getRenderPosition());
                     reset();
+                    if(local)
+                    {
+                        whiteTurn = !whiteTurn;
+                    }
+                    if(singlePlayer)
+                    {
+                        //bot do turn
+                    }
                     return;
                 }
             }
@@ -71,11 +93,21 @@ public class GameManager {
 
     private ArrayList<ChessPieces> loadClickablePieces()
     {
-        if (white) {
-            return chessPieceManager.getWhitePieces();
+        if(local)
+        {
+            if(whiteTurn) {
+                return chessPieceManager.getWhitePieces();
+            }
+            else {
+                return chessPieceManager.getBlackPieces();
+            }
         }
         else {
-            return chessPieceManager.getBlackPieces();
+            if (white) {
+                return chessPieceManager.getWhitePieces();
+            } else {
+                return chessPieceManager.getBlackPieces();
+            }
         }
     }
     private ArrayList<Move> getAllMovesFromPiece(ArrayList<ChessPieces> clickablePieces, Rectangle mouse) {

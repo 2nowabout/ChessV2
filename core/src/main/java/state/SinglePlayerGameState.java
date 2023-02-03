@@ -16,15 +16,14 @@ public class SinglePlayerGameState extends State {
 
     public SinglePlayerGameState(GameStateManager gsm) {
         super(gsm);
-        manager = new GameManager(true);
+        manager = new GameManager(true, false, true);
     }
 
     @Override
     protected void handleInput() {
         Rectangle mouseRectangle = new Rectangle(Gdx.input.getX(), Gdx.input.getY(), 1, 1); //get mouse position
         mouseRectangle.y = Gdx.graphics.getHeight() - mouseRectangle.y; // invert y, this is already inverted in the game
-        if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT))
-        {
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             manager.clicked(mouseRectangle);
         }
     }

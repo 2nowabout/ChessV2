@@ -6,8 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import interfaces.IButtons;
 import objects.Buttons;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,19 +36,13 @@ public class StartState extends State {
             if (button.getRectangle().intersects(mouseRectangle) && Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
                 switch (button.getString()) {
                     case "LocalPlay":
-                        gsm.setLocalPlay(true);
-                        gsm.setSinglePlayer(false);
                         gsm.push(new LocalGameState(gsm));
                         break;
                     case "SinglePlayer":
-                        gsm.setLocalPlay(false);
-                        gsm.setSinglePlayer(true);
                         gsm.push(new SinglePlayerGameState(gsm));
                         break;
                     case "MultiPlayer":
-                        throw new NotImplementedException();
-                        //gsm.setLocalPlay(false);
-                        //gsm.setSinglePlayer(false);
+                        gsm.setMultiPlayer();
                         //gsm.push(new LoginState(gsm));
                     default:
                         throw new UnsupportedOperationException();

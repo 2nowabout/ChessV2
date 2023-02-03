@@ -15,7 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.*;
 
@@ -99,7 +98,7 @@ public class LoginState extends State {
     public void update(float dt) {
         if(loggedIn)
         {
-            throw new NotImplementedException();
+
 //            Websocket client = new Websocket();
 //            try { Thread.sleep(0); }
 //            catch (Exception e) { e.printStackTrace();}

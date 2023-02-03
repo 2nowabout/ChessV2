@@ -4,6 +4,7 @@ import objects.chesspieces.Rook;
 import objects.chesspieces.ChessPieces;
 import org.junit.Test;
 import save_libraries.Move;
+import save_libraries.Position;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,7 @@ public class RookTests {
     public void RookCheckIfMoved()
     {
         Rook rook = new Rook(true, 2, 2);
-        rook.doMove(new Move(2,2,3,2));
+        rook.doMove(new Move(2,2,3,2, true), new Position(0,0));
         assertEquals(3, rook.getPosition().getX());
         assertEquals(2, rook.getPosition().getY());
     }
@@ -54,6 +55,6 @@ public class RookTests {
     public void RookCheckMoveHacking()
     {
         Rook rook = new Rook(true, 2, 2);
-        rook.doMove(new Move(2,3,3,2));
+        rook.doMove(new Move(2,3,3,2, true), new Position(0,0));
     }
 }

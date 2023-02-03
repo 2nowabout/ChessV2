@@ -1,5 +1,7 @@
 package objects.chesspieces;
 
+import ai.botpieces.BotBischop;
+import ai.botpieces.BotPieces;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import move_rules.ChessPieceMoves;
 import objects.FieldPoints;
@@ -13,11 +15,7 @@ import java.util.ArrayList;
 public class Bishop extends ChessPieces {
     public Bishop(boolean white, int x, int y) {
         super(white, x, y);
-        if (white) {
-            points = 30;
-        } else {
-            points = -30;
-        }
+        points = 30;
     }
 
     @Override
@@ -43,7 +41,6 @@ public class Bishop extends ChessPieces {
             return;
         }
         throw new IllegalArgumentException("Old Move cordinates dont allign, Hacking?");
-
     }
 
     @Override
@@ -54,5 +51,10 @@ public class Bishop extends ChessPieces {
     @Override
     public ArrayList<ArrayList<Double>> getFieldPoints() {
         return FieldPoints.bishopPoints();
+    }
+
+    @Override
+    public BotPieces makeCopy() {
+        return new BotBischop(this.white, this.x, this.y, false);
     }
 }

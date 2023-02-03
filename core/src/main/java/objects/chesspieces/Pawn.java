@@ -1,5 +1,7 @@
 package objects.chesspieces;
 
+import ai.botpieces.BotPawn;
+import ai.botpieces.BotPieces;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import move_rules.ChessPieceMoves;
 import objects.FieldPoints;
@@ -58,6 +60,11 @@ public class Pawn extends ChessPieces {
     public ArrayList<ArrayList<Double>> getFieldPoints() {
 
         return FieldPoints.pawnPoints();
+    }
+
+    @Override
+    public BotPieces makeCopy() {
+        return new BotPawn(this.white, this.x, this.y, this.firstmove);
     }
 
 }

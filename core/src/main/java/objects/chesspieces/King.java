@@ -1,5 +1,7 @@
 package objects.chesspieces;
 
+import ai.botpieces.BotKing;
+import ai.botpieces.BotPieces;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import move_rules.ChessPieceMoves;
 import objects.FieldPoints;
@@ -16,11 +18,7 @@ public class King extends ChessPieces {
     public King(boolean white, int x, int y) {
         super(white, x, y);
         firstmove = true;
-        if (white) {
-            points = 900;
-        } else {
-            points = -900;
-        }
+        points = 900;
     }
 
     @Override
@@ -60,5 +58,10 @@ public class King extends ChessPieces {
     @Override
     public ArrayList<ArrayList<Double>> getFieldPoints() {
         return FieldPoints.kingPoints();
+    }
+
+    @Override
+    public BotPieces makeCopy() {
+        return new BotKing(this.white, this.x, this.y, this.firstmove);
     }
 }

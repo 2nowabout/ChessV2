@@ -42,4 +42,15 @@ public class ChessPieceManager {
         return all;
     }
 
+    public void killChesspiece(ChessPieces chessPiece)
+    {
+        if(chessPiece.isWhite())
+        {
+            white.remove(chessPiece);
+        }
+        else {
+            black.remove(chessPiece);
+        }
+    }
+
 }

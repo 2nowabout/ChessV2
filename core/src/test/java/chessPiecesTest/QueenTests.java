@@ -4,6 +4,7 @@ import objects.chesspieces.Queen;
 import objects.chesspieces.ChessPieces;
 import org.junit.Test;
 import save_libraries.Move;
+import save_libraries.Position;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,7 @@ public class QueenTests {
     public void QueenCheckIfMoved()
     {
         Queen Queen = new Queen(true, 2, 2);
-        Queen.doMove(new Move(2,2,3,2));
+        Queen.doMove(new Move(2,2,3,2, true), new Position(0,0));
         assertEquals(3, Queen.getPosition().getX());
         assertEquals(2, Queen.getPosition().getY());
     }
@@ -54,6 +55,6 @@ public class QueenTests {
     public void QueenCheckMoveHacking()
     {
         Queen Queen = new Queen(true, 2, 2);
-        Queen.doMove(new Move(2,3,3,2));
+        Queen.doMove(new Move(2,3,3,2, true), new Position(0,0));
     }
 }

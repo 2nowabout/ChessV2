@@ -9,7 +9,7 @@ public class MoveTests {
     @Test
     public void MoveSetAndGetTest()
     {
-        Move move = new Move(1,2,3,4);
+        Move move = new Move(1,2,3,4, true);
         assertEquals(1, move.getOldX());
         assertEquals(2, move.getOldY());
         assertEquals(3, move.getNewX());

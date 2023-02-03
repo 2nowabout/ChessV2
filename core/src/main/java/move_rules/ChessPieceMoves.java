@@ -54,8 +54,11 @@ public class ChessPieceMoves {
                     }
                 }
             }
-            if (positionSafe || attack) {
-                possibleMoves.add(new Move(x, y, pos.getPosition().getX(), pos.getPosition().getY()));
+            if (positionSafe && !attack) {
+                possibleMoves.add(new Move(x, y, pos.getPosition().getX(), pos.getPosition().getY(), false));
+            }
+            if(attack) {
+                possibleMoves.add(new Move(x, y, pos.getPosition().getX(), pos.getPosition().getY(), true));
             }
         }
         return possibleMoves;
@@ -94,41 +97,41 @@ public class ChessPieceMoves {
             for (Position pos: allEnemyPositions) {
                 if(right.equals(pos) && !rightStopt)
                 {
-                    possibleMoves.add(new Move(x,y,pos.getX(), pos.getY()));
+                    possibleMoves.add(new Move(x,y,pos.getX(), pos.getY(), true));
                     rightStopt = true;
                 }
                 if(left.equals(pos) && !leftStopt)
                 {
-                    possibleMoves.add(new Move(x,y,pos.getX(), pos.getY()));
+                    possibleMoves.add(new Move(x,y,pos.getX(), pos.getY(), true));
                     leftStopt = true;
                 }
                 if(up.equals(pos) && !upStopt)
                 {
-                    possibleMoves.add(new Move(x,y,pos.getX(), pos.getY()));
+                    possibleMoves.add(new Move(x,y,pos.getX(), pos.getY(), true));
                     upStopt = true;
                 }
                 if(down.equals(pos) && !downStopt)
                 {
-                    possibleMoves.add(new Move(x,y, pos.getX(), pos.getY()));
+                    possibleMoves.add(new Move(x,y, pos.getX(), pos.getY(), true));
                     downStopt = true;
                 }
             }
 
             if(!rightStopt)
             {
-                possibleMoves.add(new Move(x,y, right.getX(), right.getY()));
+                possibleMoves.add(new Move(x,y, right.getX(), right.getY(), false));
             }
             if(!leftStopt)
             {
-                possibleMoves.add(new Move(x,y, left.getX(), left.getY()));
+                possibleMoves.add(new Move(x,y, left.getX(), left.getY(), false));
             }
             if(!upStopt)
             {
-                possibleMoves.add(new Move(x,y, up.getX(), up.getY()));
+                possibleMoves.add(new Move(x,y, up.getX(), up.getY(), false));
             }
             if(!downStopt)
             {
-                possibleMoves.add(new Move(x,y, down.getX(), down.getY()));
+                possibleMoves.add(new Move(x,y, down.getX(), down.getY(), false));
             }
         }
         return possibleMoves;
@@ -149,6 +152,7 @@ public class ChessPieceMoves {
         for (Position pos: movesToTest) {
             if(!checkOutsideBorder(pos)){
                 boolean safe = true;
+                boolean addedAsAttack = false;
                 for (Position allyPos: allAllyPositions) {
                     if(pos.equals(allyPos))
                     {
@@ -157,7 +161,17 @@ public class ChessPieceMoves {
                 }
                 if(safe)
                 {
-                    possibleMoves.add(new Move(x,y, pos.getX(), pos.getY()));
+                    for (Position enemyPos: allEnemyPositions) {
+                        if(enemyPos.getX() == pos.getX() && enemyPos.getY() == pos.getY())
+                        {
+                            possibleMoves.add(new Move(x,y, pos.getX(), pos.getY(), true));
+                            addedAsAttack = true;
+                        }
+                    }
+                    if(!addedAsAttack)
+                    {
+                        possibleMoves.add(new Move(x, y, pos.getX(), pos.getY(), false));
+                    }
                 }
             }
         }
@@ -197,40 +211,40 @@ public class ChessPieceMoves {
             for (Position pos: allEnemyPositions) {
                 if(right.equals(pos) && !rightStopt)
                 {
-                    possibleMoves.add(new Move(x,y,pos.getX(), pos.getY()));
+                    possibleMoves.add(new Move(x,y,pos.getX(), pos.getY(), true));
                     rightStopt = true;
                 }
                 if(left.equals(pos) && !leftStopt)
                 {
-                    possibleMoves.add(new Move(x,y,pos.getX(), pos.getY()));
+                    possibleMoves.add(new Move(x,y,pos.getX(), pos.getY(), true));
                     leftStopt = true;
                 }
                 if(up.equals(pos) && !upStopt)
                 {
-                    possibleMoves.add(new Move(x,y,pos.getX(), pos.getY()));
+                    possibleMoves.add(new Move(x,y,pos.getX(), pos.getY(), true));
                     upStopt = true;
                 }
                 if(down.equals(pos) && !downStopt)
                 {
-                    possibleMoves.add(new Move(x,y, pos.getX(), pos.getY()));
+                    possibleMoves.add(new Move(x,y, pos.getX(), pos.getY(), true));
                     downStopt = true;
                 }
             }
             if(!rightStopt)
             {
-                possibleMoves.add(new Move(x,y, right.getX(), right.getY()));
+                possibleMoves.add(new Move(x,y, right.getX(), right.getY(), false));
             }
             if(!leftStopt)
             {
-                possibleMoves.add(new Move(x,y, left.getX(), left.getY()));
+                possibleMoves.add(new Move(x,y, left.getX(), left.getY(), false));
             }
             if(!upStopt)
             {
-                possibleMoves.add(new Move(x,y, up.getX(), up.getY()));
+                possibleMoves.add(new Move(x,y, up.getX(), up.getY(), false));
             }
             if(!downStopt)
             {
-                possibleMoves.add(new Move(x,y, down.getX(), down.getY()));
+                possibleMoves.add(new Move(x,y, down.getX(), down.getY(), false));
             }
         }
         return possibleMoves;

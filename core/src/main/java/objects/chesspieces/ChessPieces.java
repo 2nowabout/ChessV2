@@ -1,5 +1,6 @@
 package objects.chesspieces;
 
+import ai.botpieces.BotPieces;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import save_libraries.Move;
 import save_libraries.Position;
@@ -65,10 +66,8 @@ public abstract class ChessPieces {
 
     public boolean isClicked(Rectangle mouse)
     {
-        if(mouse.intersects(rectangle))
-        {
-            return true;
-        }
-        return false;
+        return mouse.intersects(rectangle);
     }
+
+    public abstract BotPieces makeCopy();
 }
