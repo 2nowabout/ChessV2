@@ -1,5 +1,6 @@
 package managers;
 
+import ai.Bot;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import function.AssignStartLocation;
 import objects.Tile;
@@ -20,16 +21,23 @@ public class GameManager {
     private boolean singlePlayer;
     private boolean whiteTurn;
     boolean firstclick = true;
+    private Bot bot;
+
     public GameManager(boolean white, boolean local, boolean singlePlayer)
     {
         this.white = white;
         this.local = local;
         this.whiteTurn = true;
+        this.singlePlayer = singlePlayer;
         canMoveHere = new ArrayList<>();
         this.chessPieceManager = new ChessPieceManager();
         this.mainBordManager = new MainBordManager(white);
         AssignStartLocation assignStartLocation = new AssignStartLocation();
         assignStartLocation.assignStartRenderLocation(chessPieceManager.getAllPieces(), mainBordManager.getBord());
+        if(singlePlayer)
+        {
+            bot = new Bot(2, !white);
+        }
     }
 
     public void draw(SpriteBatch batch)
@@ -42,6 +50,10 @@ public class GameManager {
     {
         if(firstclick) {
             ArrayList<ChessPieces> clickablePieces = loadClickablePieces();
+            if(clickablePieces == null)
+            {
+                return;
+            }
             ArrayList<Move> allmoves = getAllMovesFromPiece(clickablePieces, mouseRectangle);
             if(allmoves == null)
             {
@@ -74,13 +86,12 @@ public class GameManager {
                     Move move = new Move(clickedPiece.getPosition().getX(), clickedPiece.getPosition().getY(), tile.getPosition().getX(), tile.getPosition().getY(), true); //attack doesn't matter here
                     clickedPiece.doMove(move, tile.getRenderPosition());
                     reset();
-                    if(local)
-                    {
-                        whiteTurn = !whiteTurn;
-                    }
+                    whiteTurn = !whiteTurn;
                     if(singlePlayer)
                     {
                         //bot do turn
+                        botMoveExecution(bot.run(chessPieceManager.getAllPieces()));
+                        whiteTurn = !whiteTurn;
                     }
                     return;
                 }
@@ -103,12 +114,14 @@ public class GameManager {
             }
         }
         else {
-            if (white) {
-                return chessPieceManager.getWhitePieces();
-            } else {
-                return chessPieceManager.getBlackPieces();
+            if (white && whiteTurn) {
+                    return chessPieceManager.getWhitePieces();
+
+            } else if (!white && !whiteTurn) {
+                    return chessPieceManager.getBlackPieces();
             }
         }
+        return null;
     }
     private ArrayList<Move> getAllMovesFromPiece(ArrayList<ChessPieces> clickablePieces, Rectangle mouse) {
         for (ChessPieces chesspiece : clickablePieces) {
@@ -127,5 +140,31 @@ public class GameManager {
         }
         canMoveHere = new ArrayList<>();
         firstclick = true;
+    }
+
+    private void botMoveExecution(Move move)
+    {
+        if(move.isAttack())
+        {
+            for (ChessPieces chesspiece: chessPieceManager.getAllPieces()) {
+                if(chesspiece.getPosition().getX() == move.getNewX() && chesspiece.getPosition().getY() == move.getNewY())
+                {
+                    chessPieceManager.killChesspiece(chesspiece);
+                }
+            }
+        }
+        Tile chosenTile = null;
+        for (Tile tile: mainBordManager.getBord()) {
+            if(tile.isThisCorrectTile(move.getNewX(), move.getNewY()))
+            {
+                chosenTile = tile;
+            }
+        }
+        for (ChessPieces chesspiece: chessPieceManager.getAllPieces()) {
+            if(chesspiece.getPosition().getX() == move.getOldX() && chesspiece.getPosition().getY() == move.getOldY())
+            {
+                chesspiece.doMove(move, chosenTile.getRenderPosition());
+            }
+        }
     }
 }

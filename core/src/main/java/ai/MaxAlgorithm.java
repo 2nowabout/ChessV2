@@ -12,17 +12,35 @@ public class MaxAlgorithm {
         calcAllMoves = new BotCalcAllMoves();
     }
 
-    public void algorithm(ArrayList<BotPieces> botPieces, ArrayList<BotMoves> botMoves, boolean white) {
-        ArrayList<Move> goodMoves = new ArrayList<>();
+    public ArrayList<BotMoves> algorithm(ArrayList<BotPieces> botPieces, ArrayList<BotMoves> botMoves, boolean white) {
+        ArrayList<BotMoves> goodMoves = new ArrayList<>();
+        System.out.println("max botmoves recieved: " + botMoves.size());
         if (!botMoves.isEmpty()) {
             for (BotMoves move : botMoves) {
                 ArrayList<BotPieces> copiedPieces = prepare(botPieces, move);
-                calcAllMoves.calcAllMoves(move, copiedPieces, white, true);
+                goodMoves.addAll(calcAllMoves.calcAllMovesMax(move, copiedPieces, white));
             }
         }
+        else {
+            goodMoves = calcAllMoves.calcAllMovesMax(null, botPieces, white);
+        }
+        double average = 0;
+        for (BotMoves moves: goodMoves) {
+            average = average + moves.getPoints();
+        }
+        average = average / goodMoves.size();
+        ArrayList<BotMoves> toRemove = new ArrayList<>();
+        for (BotMoves moves: goodMoves) {
+            if(moves.getPoints() < average)
+            {
+                toRemove.add(moves);
+            }
+        }
+        goodMoves.removeAll(toRemove);
+        return goodMoves;
     }
 
-    public ArrayList<BotPieces> prepare(ArrayList<BotPieces> botPieces, BotMoves botMoves) {
+    private ArrayList<BotPieces> prepare(ArrayList<BotPieces> botPieces, BotMoves botMoves) {
         //preparation
         ArrayList<BotPieces> copiedList = new ArrayList<>();
         for (BotPieces piece : botPieces) {

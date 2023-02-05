@@ -22,7 +22,7 @@ public class BotMoves {
 
     public void addPreviousMoves(ArrayList<BotMove> moves)
     {
-        moves.addAll(moves);
+        this.moves.addAll(moves);
     }
 
     public BotMove getFirstMove()

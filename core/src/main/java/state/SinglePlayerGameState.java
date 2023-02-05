@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import managers.GameManager;
 import managers.MainBordManager;
+import save_libraries.Move;
 
 import java.awt.*;
 
