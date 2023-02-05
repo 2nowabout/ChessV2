@@ -28,9 +28,9 @@ public class BotCalcAllMoves {
                                     newMove.addPreviousMoves(previousMove.getMoves());
                                     botMove = new BotMove(move.getOldX(), move.getOldY(), move.getNewX(), move.getNewY(), move.isAttack(), previousMove.getMoves().size());
                                     if (white) {
-                                        newMove.addMove(botMove, previousMove.getPoints() + pieces.getPoints() + allypiece.getFieldPoints(9 - move.getNewX(), 9 - move.getNewY()));
+                                        newMove.addMove(botMove, pieces.getPoints() + allypiece.getFieldPoints(9 - move.getNewX(), 9 - move.getNewY()));
                                     } else {
-                                        newMove.addMove(botMove, previousMove.getPoints() + pieces.getPoints() + allypiece.getFieldPoints(move.getNewX(), move.getNewY()));
+                                        newMove.addMove(botMove, pieces.getPoints() + allypiece.getFieldPoints(move.getNewX(), move.getNewY()));
                                     }
                                 } else {
                                     botMove = new BotMove(move.getOldX(), move.getOldY(), move.getNewX(), move.getNewY(), move.isAttack(), 0);
@@ -73,15 +73,15 @@ public class BotCalcAllMoves {
             if(moves != null) {
                 for (Move move : moves) {
                     if (move.isAttack()) {
-                        for (BotPieces pieces : allPieces) {
-                            if (move.getNewX() == pieces.getPosition().getX() && move.getNewY() == pieces.getPosition().getY()) {
+                        for (BotPieces piece : getTeamPieces.getAllyPieces(allPieces, white)) {
+                            if (move.getNewX() == piece.getPosition().getX() && move.getNewY() == piece.getPosition().getY()) {
                                 BotMoves newMove = new BotMoves();
                                 newMove.addPreviousMoves(previousMove.getMoves());
                                 BotMove botMove = new BotMove(move.getOldX(), move.getOldY(), move.getNewX(), move.getNewY(), move.isAttack(), previousMove.getMoves().size());
                                 if (white) {
-                                    newMove.addMove(botMove, previousMove.getPoints() - (pieces.getPoints() + enemyPiece.getFieldPoints(9 - move.getNewX(), 9 - move.getNewY())));
+                                    newMove.addMove(botMove, 0 - (piece.getPoints() + enemyPiece.getFieldPoints(move.getNewX(), move.getNewY())));
                                 } else {
-                                    newMove.addMove(botMove, previousMove.getPoints() - (pieces.getPoints() + enemyPiece.getFieldPoints(move.getNewX(), move.getNewY())));
+                                    newMove.addMove(botMove, 0 - (piece.getPoints() + enemyPiece.getFieldPoints(9 - move.getNewX(), 9 - move.getNewY())));
                                 }
                                 newMoves.add(newMove);
                             }
@@ -91,9 +91,9 @@ public class BotCalcAllMoves {
                         newMove.addPreviousMoves(previousMove.getMoves());
                         BotMove botMove = new BotMove(move.getOldX(), move.getOldY(), move.getNewX(), move.getNewY(), move.isAttack(), previousMove.getMoves().size());
                         if (white) {
-                            newMove.addMove(botMove, previousMove.getPoints() - enemyPiece.getFieldPoints(9 - move.getNewX(), 9 - move.getNewY()));
+                            newMove.addMove(botMove, 0 - enemyPiece.getFieldPoints(move.getNewX(), move.getNewY()));
                         } else {
-                            newMove.addMove(botMove, previousMove.getPoints() - enemyPiece.getFieldPoints(move.getNewX(), move.getNewY()));
+                            newMove.addMove(botMove, 0 - enemyPiece.getFieldPoints(9 - move.getNewX(), 9 - move.getNewY()));
                         }
                         newMoves.add(newMove);
                     }

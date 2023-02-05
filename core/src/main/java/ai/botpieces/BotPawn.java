@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class BotPawn extends BotPieces {
     public BotPawn(boolean white, int x, int y, boolean firstmove) {
         super(white, x, y, firstmove);
+        points = 10;
     }
 
     @Override

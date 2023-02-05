@@ -24,6 +24,7 @@ public class MinMaxAlgorithm {
     public Move run(ArrayList<BotPieces> pieces)
     {
         ArrayList<BotMoves> botMoves = new ArrayList<>();
+        int timesRun = 0;
 
         System.out.println("start algo");
         for (int i = 0; i < depth; i++) {
@@ -41,7 +42,9 @@ public class MinMaxAlgorithm {
             long endmin = System.nanoTime();
             System.out.println("one depth done");
             checkAlgoTime(startmin, endmin);
+            timesRun++;
         }
+        System.out.println("COMPLETE");
         BotMoves bestMove = new BotMoves();
         bestMove.addMove(new BotMove(0,0,0,0,false, 0), 0);
         for (BotMoves botMove: botMoves) {

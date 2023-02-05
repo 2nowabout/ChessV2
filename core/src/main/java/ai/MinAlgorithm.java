@@ -20,12 +20,12 @@ public class MinAlgorithm {
         }
         double average = 0;
         for (BotMoves moves : goodMoves) {
-            average = average + moves.getPoints();
+            average = average + moves.getLastAdded();
         }
         average = average / goodMoves.size();
         ArrayList<BotMoves> toRemove = new ArrayList<>();
         for (BotMoves moves : goodMoves) {
-            if (moves.getPoints() < average) {
+            if (moves.getLastAdded() < average) {
                 toRemove.add(moves);
             }
         }

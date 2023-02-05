@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class BotBischop extends BotPieces {
     public BotBischop(boolean white, int x, int y, boolean firstmove) {
         super(white, x, y, firstmove);
+        points = 30;
     }
 
     @Override

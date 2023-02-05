@@ -20,19 +20,17 @@ public class MaxAlgorithm {
                 ArrayList<BotPieces> copiedPieces = prepare(botPieces, move);
                 goodMoves.addAll(calcAllMoves.calcAllMovesMax(move, copiedPieces, white));
             }
-        }
-        else {
+        } else {
             goodMoves = calcAllMoves.calcAllMovesMax(null, botPieces, white);
         }
         double average = 0;
-        for (BotMoves moves: goodMoves) {
-            average = average + moves.getPoints();
+        for (BotMoves moves : goodMoves) {
+            average = average + moves.getLastAdded();
         }
         average = average / goodMoves.size();
         ArrayList<BotMoves> toRemove = new ArrayList<>();
-        for (BotMoves moves: goodMoves) {
-            if(moves.getPoints() < average)
-            {
+        for (BotMoves moves : goodMoves) {
+            if (moves.getLastAdded() < average) {
                 toRemove.add(moves);
             }
         }
