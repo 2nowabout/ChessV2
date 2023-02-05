@@ -38,8 +38,11 @@ public abstract class BotPieces {
 
     public abstract void doMove(Move move);
 
-    public abstract ArrayList<Move> getMoves(ArrayList<objects.chesspieces.ChessPieces> allPieces);
+    public abstract ArrayList<Move> getMoves(ArrayList<BotPieces> allPieces);
 
-    public abstract ArrayList<ArrayList<Double>> getFieldPoints();
+    public abstract double getFieldPoints(int x, int y);
+
+    public abstract BotPieces copyPiece();
+
 }
 

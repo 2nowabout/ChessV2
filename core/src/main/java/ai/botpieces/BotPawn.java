@@ -28,12 +28,17 @@ public class BotPawn extends BotPieces {
     }
 
     @Override
-    public ArrayList<Move> getMoves(ArrayList<ChessPieces> allPieces) {
+    public ArrayList<Move> getMoves(ArrayList<BotPieces> allPieces) {
         return ChessPieceMoves.calcPawnMoves(this.x, this.y, this.white, allPieces, firstmove);
     }
 
     @Override
-    public ArrayList<ArrayList<Double>> getFieldPoints() {
-        return FieldPoints.pawnPoints();
+    public double getFieldPoints(int x, int y) {
+        return FieldPoints.pawnPoints().get(y -1).get(x -1);
+    }
+
+    @Override
+    public BotPieces copyPiece() {
+        return new BotPawn(this.white, this.x, this.y, this.firstmove);
     }
 }

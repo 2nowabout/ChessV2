@@ -1,5 +1,6 @@
 package objects.chesspieces;
 
+import ai.ChessPieceConverter;
 import ai.botpieces.BotPieces;
 import ai.botpieces.BotRook;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -53,12 +54,12 @@ public class Rook extends ChessPieces {
 
     @Override
     public ArrayList<Move> getMoves(ArrayList<ChessPieces> allPieces) {
-        return ChessPieceMoves.calcRookMoves(this.x, this.y, this.white, allPieces);
+        return ChessPieceMoves.calcRookMoves(this.x, this.y, this.white, ChessPieceConverter.convertChessPieces(allPieces));
     }
 
     @Override
-    public ArrayList<ArrayList<Double>> getFieldPoints() {
-        return FieldPoints.rookPoints();
+    public double getFieldPoints(int x, int y) {
+        return FieldPoints.rookPoints().get(y -1).get(x -1);
     }
 
     @Override

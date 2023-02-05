@@ -19,7 +19,6 @@ public class Tile {
     private int renderY;
     private Position position;
     private Rectangle rectangle;
-    private static BitmapFont font = new BitmapFont();
 
     public Tile(boolean white, int renderX, int renderY, int x, int y) {
         this.renderX = renderX;
@@ -29,7 +28,7 @@ public class Tile {
         this.white = white;
     }
 
-    public void render(SpriteBatch batch) {
+    public void render(SpriteBatch batch, BitmapFont font) {
         if(white)
         {
             batch.draw(TextureHolder.WhiteTileTexture, renderX, renderY, WIDTH, HEIGHT);
@@ -57,11 +56,6 @@ public class Tile {
 
     public void update(float dt) {
         throw new UnsupportedOperationException();
-    }
-
-    public void dispose()
-    {
-        font.dispose();
     }
 
     public void resetTileEffects()

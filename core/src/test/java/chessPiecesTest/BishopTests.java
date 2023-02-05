@@ -65,4 +65,11 @@ public class BishopTests {
         Bishop bishop = new Bishop(true, 2, 2);
         bishop.doMove(new Move(2,3,3,2, true), new Position(0,0));
     }
+
+    @Test
+    public void BischopFieldPointTest()
+    {
+        Bishop bishop = new Bishop(true, 2, 2);
+        assertEquals(0.0, (double) bishop.getFieldPoints(2,2), 0);
+    }
 }

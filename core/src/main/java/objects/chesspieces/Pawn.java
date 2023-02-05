@@ -1,5 +1,6 @@
 package objects.chesspieces;
 
+import ai.ChessPieceConverter;
 import ai.botpieces.BotPawn;
 import ai.botpieces.BotPieces;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -53,13 +54,13 @@ public class Pawn extends ChessPieces {
 
     @Override
     public ArrayList<Move> getMoves(ArrayList<ChessPieces> allPieces) {
-        return ChessPieceMoves.calcPawnMoves(x,y,white,allPieces,firstmove);
+        return ChessPieceMoves.calcPawnMoves(x,y,white, ChessPieceConverter.convertChessPieces(allPieces) ,firstmove);
     }
 
     @Override
-    public ArrayList<ArrayList<Double>> getFieldPoints() {
+    public double getFieldPoints(int x, int y) {
 
-        return FieldPoints.pawnPoints();
+        return FieldPoints.pawnPoints().get(y -1).get(x -1);
     }
 
     @Override

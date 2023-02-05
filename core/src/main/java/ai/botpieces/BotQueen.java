@@ -24,12 +24,17 @@ public class BotQueen extends BotPieces {
     }
 
     @Override
-    public ArrayList<Move> getMoves(ArrayList<ChessPieces> allPieces) {
+    public ArrayList<Move> getMoves(ArrayList<BotPieces> allPieces) {
         return ChessPieceMoves.calcQueenMoves(this.x, this.y, this.white, allPieces);
     }
 
     @Override
-    public ArrayList<ArrayList<Double>> getFieldPoints() {
-        return FieldPoints.queenPoints();
+    public double getFieldPoints(int x, int y) {
+        return FieldPoints.queenPoints().get(y -1).get(x -1);
+    }
+
+    @Override
+    public BotPieces copyPiece() {
+        return new BotQueen(this.white, this.x, this.y, this.firstmove);
     }
 }

@@ -1,5 +1,6 @@
 package managers;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import function.GenerateBord;
 import objects.Tile;
@@ -10,15 +11,18 @@ public class MainBordManager {
 
     private ArrayList<Tile> bord;
 
+    private BitmapFont font;
+
     public MainBordManager(boolean white) {
         GenerateBord generator = new GenerateBord();
         bord = generator.generate(white);
+        font = new BitmapFont();
     }
 
     public void draw(SpriteBatch batch)
     {
         for (Tile tile: bord) {
-            tile.render(batch);
+            tile.render(batch, font);
         }
     }
 

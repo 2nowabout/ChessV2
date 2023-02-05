@@ -1,5 +1,6 @@
 package objects.chesspieces;
 
+import ai.ChessPieceConverter;
 import ai.botpieces.BotBischop;
 import ai.botpieces.BotPieces;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -45,12 +46,12 @@ public class Bishop extends ChessPieces {
 
     @Override
     public ArrayList<Move> getMoves(ArrayList<ChessPieces> allPieces) {
-        return ChessPieceMoves.calcBishopMoves(this.x, this.y, this.white, allPieces);
+        return ChessPieceMoves.calcBishopMoves(this.x, this.y, this.white, ChessPieceConverter.convertChessPieces(allPieces));
     }
 
     @Override
-    public ArrayList<ArrayList<Double>> getFieldPoints() {
-        return FieldPoints.bishopPoints();
+    public double getFieldPoints(int x, int y) {
+        return FieldPoints.bishopPoints().get(y -1).get(x -1);
     }
 
     @Override

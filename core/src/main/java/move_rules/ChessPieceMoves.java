@@ -1,5 +1,6 @@
 package move_rules;
 
+import ai.botpieces.BotPieces;
 import objects.chesspieces.ChessPieces;
 import save_libraries.Move;
 import save_libraries.MoveToCheck;
@@ -13,7 +14,7 @@ public class ChessPieceMoves {
     private static ArrayList<Position> allEnemyPositions = new ArrayList<>();
     private static ArrayList<Position> allAllyPositions = new ArrayList<>();
 
-    public static ArrayList<Move> calcPawnMoves(int x, int y, boolean white, ArrayList<ChessPieces> allPieces, boolean firstmove) {
+    public static ArrayList<Move> calcPawnMoves(int x, int y, boolean white, ArrayList<BotPieces> allPieces, boolean firstmove) {
         ArrayList<Move> possibleMoves = new ArrayList<>();
         ArrayList<MoveToCheck> toCheckMoves = new ArrayList<>();
         getAllyAndEnemy(white, allPieces);
@@ -64,7 +65,7 @@ public class ChessPieceMoves {
         return possibleMoves;
     }
 
-    public static ArrayList<Move> calcRookMoves(int x, int y, boolean white, ArrayList<ChessPieces> allPieces) {
+    public static ArrayList<Move> calcRookMoves(int x, int y, boolean white, ArrayList<BotPieces> allPieces) {
         ArrayList<Move> possibleMoves = new ArrayList<>();
         getAllyAndEnemy(white, allPieces);
         boolean leftStopt = false;
@@ -137,7 +138,7 @@ public class ChessPieceMoves {
         return possibleMoves;
     }
 
-    public static ArrayList<Move> calcKnightMoves(int x, int y, boolean white, ArrayList<ChessPieces> allPieces) {
+    public static ArrayList<Move> calcKnightMoves(int x, int y, boolean white, ArrayList<BotPieces> allPieces) {
         ArrayList<Move> possibleMoves = new ArrayList<>();
         getAllyAndEnemy(white, allPieces);
         ArrayList<Position> movesToTest = new ArrayList<>();
@@ -178,7 +179,7 @@ public class ChessPieceMoves {
         return possibleMoves;
     }
 
-    public static ArrayList<Move> calcBishopMoves(int x, int y, boolean white, ArrayList<ChessPieces> allPieces) {
+    public static ArrayList<Move> calcBishopMoves(int x, int y, boolean white, ArrayList<BotPieces> allPieces) {
         ArrayList<Move> possibleMoves = new ArrayList<>();
         getAllyAndEnemy(white, allPieces);
         boolean leftStopt = false;
@@ -250,14 +251,14 @@ public class ChessPieceMoves {
         return possibleMoves;
     }
 
-    public static ArrayList<Move> calcQueenMoves(int x, int y, boolean white, ArrayList<ChessPieces> allPieces) {
+    public static ArrayList<Move> calcQueenMoves(int x, int y, boolean white, ArrayList<BotPieces> allPieces) {
         ArrayList<Move> moves = new ArrayList<>();
         moves.addAll(calcRookMoves(x, y, white, allPieces));
         moves.addAll(calcBishopMoves(x, y, white, allPieces));
         return moves;
     }
 
-    public static ArrayList<Move> calcKingMoves(int x, int y, boolean white, ArrayList<ChessPieces> allPieces) {
+    public static ArrayList<Move> calcKingMoves(int x, int y, boolean white, ArrayList<BotPieces> allPieces) {
         return null; //TODO FIX
     }
 
@@ -265,11 +266,11 @@ public class ChessPieceMoves {
         return move.getY() >= 9 || move.getY() <= 0 || move.getX() >= 9 || move.getX() <= 0;
     }
 
-    private static void getAllyAndEnemy(boolean white, ArrayList<ChessPieces> allPieces)
+    private static void getAllyAndEnemy(boolean white, ArrayList<BotPieces> allPieces)
     {
         allEnemyPositions = new ArrayList<>();
         allAllyPositions = new ArrayList<>();
-        for (ChessPieces otherPiece : allPieces) {
+        for (BotPieces otherPiece : allPieces) {
             if(white)
             {
                 if (!otherPiece.isWhite()) {

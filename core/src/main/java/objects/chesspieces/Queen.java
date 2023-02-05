@@ -1,5 +1,6 @@
 package objects.chesspieces;
 
+import ai.ChessPieceConverter;
 import ai.botpieces.BotPieces;
 import ai.botpieces.BotQueen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -45,12 +46,12 @@ public class Queen extends ChessPieces {
 
     @Override
     public ArrayList<Move> getMoves(ArrayList<ChessPieces> allPieces) {
-        return ChessPieceMoves.calcQueenMoves(this.x, this.y, white, allPieces);
+        return ChessPieceMoves.calcQueenMoves(this.x, this.y, white, ChessPieceConverter.convertChessPieces(allPieces));
     }
 
     @Override
-    public ArrayList<ArrayList<Double>> getFieldPoints() {
-        return FieldPoints.queenPoints();
+    public double getFieldPoints(int x, int y) {
+        return FieldPoints.queenPoints().get(y -1).get(x -1);
     }
 
     @Override

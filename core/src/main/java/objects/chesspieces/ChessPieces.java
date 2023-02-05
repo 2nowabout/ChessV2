@@ -62,7 +62,7 @@ public abstract class ChessPieces {
 
     public abstract ArrayList<Move> getMoves(ArrayList<ChessPieces> allPieces);
 
-    public abstract ArrayList<ArrayList<Double>> getFieldPoints();
+    public abstract double getFieldPoints(int x, int y);
 
     public boolean isClicked(Rectangle mouse)
     {
