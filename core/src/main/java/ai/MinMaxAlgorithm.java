@@ -24,7 +24,7 @@ public class MinMaxAlgorithm {
         maxAlgorithm = new MaxAlgorithm();
     }
 
-    public Move run(ArrayList<BotPieces> pieces)
+    public BotMove run(ArrayList<BotPieces> pieces)
     {
         ArrayList<BotMoves> botMoves = new ArrayList<>();
 

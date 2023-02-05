@@ -4,9 +4,9 @@ import ai.botpieces.BotPieces;
 
 import java.util.ArrayList;
 
-public class BotGetAllAllyPieces {
+public class BotGetTeamPieces {
 
-    public BotGetAllAllyPieces()
+    public BotGetTeamPieces()
     {
 
     }
@@ -21,5 +21,17 @@ public class BotGetAllAllyPieces {
             }
         }
         return allyPieces;
+    }
+
+    public ArrayList<BotPieces> getEnemyPieces(ArrayList<BotPieces> allPieces, boolean white)
+    {
+        ArrayList<BotPieces> enemyPieces = new ArrayList<>();
+        for (BotPieces piece: allPieces) {
+            if(white != piece.isWhite())
+            {
+                enemyPieces.add(piece);
+            }
+        }
+        return enemyPieces;
     }
 }

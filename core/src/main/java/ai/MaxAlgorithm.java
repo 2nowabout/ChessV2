@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class MaxAlgorithm {
     private BotCalcAllMoves calcAllMoves;
+
     public MaxAlgorithm() {
         calcAllMoves = new BotCalcAllMoves();
     }
@@ -24,27 +25,23 @@ public class MaxAlgorithm {
     public ArrayList<BotPieces> prepare(ArrayList<BotPieces> botPieces, BotMoves botMoves) {
         //preparation
         ArrayList<BotPieces> copiedList = new ArrayList<>();
-        for (BotPieces piece: botPieces) {
+        for (BotPieces piece : botPieces) {
             copiedList.add(piece.copyPiece());
         }
-        BotPieces enemyToRemove = null;
-        for (Move move : botMoves.getMoves()) {
+        for (BotMove move : botMoves.getMoves()) {
+            BotPieces pieceToRemove = null;
             for (BotPieces piece : copiedList) {
-                if(move.isAttack())
-                {
-                    for (BotPieces enemy: copiedList) {
-                        if(enemy.getPosition().getX() == move.getNewX() && enemy.getPosition().getY() == move.getNewY())
-                        {
-                            enemyToRemove = enemy;
-                        }
+                if (move.isAttack()) {
+                    if (piece.getPosition().getX() == move.getNewX() && piece.getPosition().getY() == move.getNewY()) {
+                        pieceToRemove = piece;
                     }
                 }
                 if (piece.getPosition().getX() == move.getOldX() && piece.getPosition().getY() == move.getOldY()) {
-                    piece.doMove(move);
+                    piece.doMove(new Move(move.getOldX(), move.getOldY(), move.getNewX(), move.getNewY(), move.isAttack()));
                 }
             }
-            if(enemyToRemove != null) {
-                copiedList.remove(enemyToRemove);
+            if (pieceToRemove != null) {
+                copiedList.remove(pieceToRemove);
             }
         }
         return copiedList;
