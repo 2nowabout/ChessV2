@@ -32,7 +32,7 @@ public class BotBischop extends BotPieces {
 
     @Override
     public double getFieldPoints(int x, int y) {
-        return FieldPoints.bishopPoints().get(y -1).get(x -1);
+            return FieldPoints.bishopPoints().get(y-1).get(x-1);
     }
 
     @Override

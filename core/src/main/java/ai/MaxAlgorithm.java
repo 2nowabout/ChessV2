@@ -23,14 +23,23 @@ public class MaxAlgorithm {
         } else {
             goodMoves = calcAllMoves.calcAllMovesMax(null, botPieces, white);
         }
-        double average = 0;
+        double max = -2000;
+        double min = 2000;
         for (BotMoves moves : goodMoves) {
-            average = average + moves.getLastAdded();
+            if(moves.getLastAdded() < min)
+            {
+                min = moves.getLastAdded();
+            }
+            if(moves.getLastAdded() > max)
+            {
+                max = moves.getLastAdded();
+            }
         }
-        average = average / goodMoves.size();
+        double difference = max - min;
+        double precentage = (difference / 100) * 60;
         ArrayList<BotMoves> toRemove = new ArrayList<>();
         for (BotMoves moves : goodMoves) {
-            if (moves.getLastAdded() < average) {
+            if (moves.getLastAdded() < (min + precentage)) {
                 toRemove.add(moves);
             }
         }

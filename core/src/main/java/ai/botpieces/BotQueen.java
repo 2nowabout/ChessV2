@@ -31,7 +31,7 @@ public class BotQueen extends BotPieces {
 
     @Override
     public double getFieldPoints(int x, int y) {
-        return FieldPoints.queenPoints().get(y -1).get(x -1);
+            return FieldPoints.queenPoints().get(y - 1).get(x - 1);
     }
 
     @Override

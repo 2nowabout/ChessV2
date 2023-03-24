@@ -22,8 +22,9 @@ public class BotMoves {
         this.points = this.points + points;
     }
 
-    public void addPreviousMoves(ArrayList<BotMove> moves)
+    public void addPreviousMoves(ArrayList<BotMove> moves, double point)
     {
+        this.points = point;
         this.moves.addAll(moves);
     }
 

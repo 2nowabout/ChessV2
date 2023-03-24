@@ -35,7 +35,7 @@ public class BotRook extends BotPieces {
 
     @Override
     public double getFieldPoints(int x, int y) {
-        return FieldPoints.rookPoints().get(y -1).get(x -1);
+            return FieldPoints.rookPoints().get(y - 1).get(x - 1);
     }
 
     @Override

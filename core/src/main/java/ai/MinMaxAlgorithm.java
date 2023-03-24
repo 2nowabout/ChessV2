@@ -46,9 +46,9 @@ public class MinMaxAlgorithm {
         }
         System.out.println("COMPLETE");
         BotMoves bestMove = new BotMoves();
-        bestMove.addMove(new BotMove(0,0,0,0,false, 0), 0);
+        bestMove.addMove(new BotMove(0,0,0,0,false, 0), -50);
         for (BotMoves botMove: botMoves) {
-            if(botMove.getPoints() > bestMove.getPoints())
+            if(bestMove.getPoints() < botMove.getPoints())
             {
                 bestMove = botMove;
             }

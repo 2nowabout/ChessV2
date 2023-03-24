@@ -36,7 +36,7 @@ public class GameManager {
         assignStartLocation.assignStartRenderLocation(chessPieceManager.getAllPieces(), mainBordManager.getBord());
         if(singlePlayer)
         {
-            bot = new Bot(2, !white);
+            bot = new Bot(4, !white);
         }
     }
 

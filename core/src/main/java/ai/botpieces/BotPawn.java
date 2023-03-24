@@ -35,7 +35,7 @@ public class BotPawn extends BotPieces {
 
     @Override
     public double getFieldPoints(int x, int y) {
-        return FieldPoints.pawnPoints().get(y -1).get(x -1);
+            return FieldPoints.pawnPoints().get(y - 1).get(x - 1);
     }
 
     @Override

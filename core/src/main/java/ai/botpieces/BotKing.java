@@ -35,7 +35,7 @@ public class BotKing extends BotPieces {
 
     @Override
     public double getFieldPoints(int x, int y) {
-        return FieldPoints.kingPoints().get(y -1).get(x -1);
+            return FieldPoints.kingPoints().get(y - 1).get(x - 1);
     }
 
     @Override
